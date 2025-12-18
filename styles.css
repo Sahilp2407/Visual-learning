@@ -729,7 +729,7 @@ body {
     gap: var(--spacing-sm);
     width: 100%;
     max-width: 300px;
-    margin: 0 auto;
+    margin: var(--spacing-lg) auto 0;
     padding: var(--spacing-md) var(--spacing-xl);
     background: var(--color-orange);
     color: var(--color-white);
@@ -740,6 +740,7 @@ body {
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: all var(--transition-base);
+    position: relative;
 }
 
 .toggle-button:hover {
@@ -1401,7 +1402,6 @@ body {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
-    margin: var(--spacing-lg) auto 0;
     padding: var(--spacing-md) var(--spacing-xl);
     background: var(--color-orange);
     color: var(--color-white);
@@ -1412,6 +1412,13 @@ body {
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: all var(--transition-base);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+
+    /* Fixed positioning at bottom-right */
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
 }
 
 .next-button:hover {
