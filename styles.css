@@ -1401,30 +1401,35 @@ body {
 .next-button {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-xl);
+    gap: var(--spacing-xs);
+    padding: 0.625rem 1.25rem;
     background: var(--color-orange);
     color: var(--color-white);
     font-family: var(--font-primary);
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.875rem;
+    font-weight: 600;
     border: none;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 2px 12px rgba(255, 107, 53, 0.25);
 
     /* Fixed positioning at bottom-right */
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     z-index: 100;
 }
 
 .next-button:hover {
     background: var(--color-orange-light);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.35);
+}
+
+.next-button svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* ===================================
