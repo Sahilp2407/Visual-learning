@@ -1664,7 +1664,9 @@ body {
     .logo-text {
         display: none;
     }
-}/* ===================================
+}
+
+/* ===================================
    MODULE 1.2 SPECIFIC STYLES
    =================================== */
 
@@ -1941,12 +1943,16 @@ body {
 
 .status-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .status-table th,
 .status-table td {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -1954,14 +1960,27 @@ body {
 .status-table th {
     background: var(--color-cream-light);
     font-weight: 700;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    border-bottom: 2px solid rgba(255, 107, 53, 0.2);
 }
 
 .status-table td {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
+    background: var(--color-white);
+    color: var(--color-text-primary);
 }
+
+.status-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status-table tbody tr:hover {
+    background: var(--color-cream-light);
+}
+
 
 .demo-insight {
     padding: var(--spacing-md);

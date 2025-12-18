@@ -679,11 +679,11 @@ function generateTable(text) {
     const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
 
     let table = `
-        <table class="status-table" style="width: 100%; border-collapse: collapse;">
+        <table class="status-table">
             <thead>
                 <tr>
-                    <th style="padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid rgba(0, 0, 0, 0.08); background: var(--color-cream-light); font-weight: 700; font-size: 0.8125rem;">Item</th>
-                    <th style="padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid rgba(0, 0, 0, 0.08); background: var(--color-cream-light); font-weight: 700; font-size: 0.8125rem;">Details</th>
+                    <th>Item</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -694,8 +694,8 @@ function generateTable(text) {
         if (trimmed) {
             table += `
                 <tr>
-                    <td style="padding: var(--spacing-sm); border-bottom: 1px solid rgba(0, 0, 0, 0.08); font-size: 0.875rem;">Point ${index + 1}</td>
-                    <td style="padding: var(--spacing-sm); border-bottom: 1px solid rgba(0, 0, 0, 0.08); font-size: 0.875rem;">${trimmed}</td>
+                    <td><strong>Point ${index + 1}</strong></td>
+                    <td>${trimmed}</td>
                 </tr>
             `;
         }
