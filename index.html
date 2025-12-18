@@ -1127,7 +1127,337 @@
                             <path d="M2 10L4 8M2 10L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <span>Restart From Beginning</span>
+                        <span>Restart Course</span>
+                    </button>
+
+                    <button class="next-module-button" onclick="nextScreen()">
+                        <span>Continue to Module 1.3</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Screen 12: Module 1.3 Transition -->
+        <section class="screen" id="screen-12" data-screen="12">
+            <div class="screen-content module-transition">
+                <div class="transition-badge">
+                    <span class="badge-icon">🎯</span>
+                    <span>Module 1.3</span>
+                </div>
+                <h1 class="transition-title">The Art of Prompting</h1>
+                <p class="transition-subtitle">Stop guessing and start structuring. Learn the 5-part framework for
+                    consistent,
+                    professional-grade AI outputs.</p>
+
+                <div class="transition-preview">
+                    <div class="preview-card">
+                        <div class="preview-icon">🧱</div>
+                        <h3>The 5-Part Framework</h3>
+                        <p>The building blocks of every high-performing prompt</p>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-icon">🔧</div>
+                        <h3>Prompt Repair</h3>
+                        <p>Diagnose and fix weak instructions in seconds</p>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-icon">♻️</div>
+                        <h3>Reusability</h3>
+                        <p>Create templates that work every time</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 13: The 5-Part Framework -->
+        <section class="screen" id="screen-13" data-screen="13">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">01</span>
+                    <h2 class="screen-title">The 5 Building Blocks</h2>
+                    <p class="screen-subtitle">Every perfect prompt is made of these 5 components</p>
+                </div>
+
+                <div class="blocks-container">
+                    <div class="block-item" style="--block-color: #FF6B35;">
+                        <div class="block-label">01. ROLE</div>
+                        <div class="block-description">Who should the AI be? (e.g., Senior Analyst, Creative Writer)
+                        </div>
+                    </div>
+                    <div class="block-item" style="--block-color: #4ECDC4;">
+                        <div class="block-label">02. CONTEXT</div>
+                        <div class="block-description">What's the background? (e.g., Project details, audience, goals)
+                        </div>
+                    </div>
+                    <div class="block-item" style="--block-color: #45B7D1;">
+                        <div class="block-label">03. TASK</div>
+                        <div class="block-description">What's the specific action? (e.g., Write, Analyze, Summary)</div>
+                    </div>
+                    <div class="block-item" style="--block-color: #96CEB4;">
+                        <div class="block-label">04. CONSTRAINTS</div>
+                        <div class="block-description">What are the limits? (e.g., Word count, tone, things to avoid)
+                        </div>
+                    </div>
+                    <div class="block-item" style="--block-color: #FFEEAD;">
+                        <div class="block-label">05. FORMAT</div>
+                        <div class="block-description">How should it look? (e.g., 3 bullet points, Markdown table,
+                            Email)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 14: Weak Prompt Demo -->
+        <section class="screen" id="screen-14" data-screen="14">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">02</span>
+                    <h2 class="screen-title">Why "Weak" Prompts Fail</h2>
+                    <p class="screen-subtitle">Vague instructions lead to unpredictable results</p>
+                </div>
+
+                <div class="dual-demo-grid">
+                    <div class="demo-card weak">
+                        <div class="demo-tag">Weak Prompt</div>
+                        <div class="prompt-text">"Write a project update."</div>
+                        <div class="demo-output">
+                            <p><b>Output:</b> Here is an update. The project is moving forward. We are working hard. Let
+                                us know
+                                if you have questions.</p>
+                            <span class="bad-tag">⚠️ Too Vague</span>
+                        </div>
+                    </div>
+                    <div class="demo-card strong">
+                        <div class="demo-tag">Structured Prompt</div>
+                        <div class="prompt-text">
+                            <span class="t-role">[Role]</span> Senior PM. <br>
+                            <span class="t-context">[Context]</span> 2 week delay, budget on track. <br>
+                            <span class="t-task">[Task]</span> Weekly update for CEO. <br>
+                            <span class="t-format">[Format]</span> Bullet points.
+                        </div>
+                        <div class="demo-output">
+                            <p><b>Output:</b>
+                                • Progress: Team completed 3 milestones.<br>
+                                • Status: 2-week delay due to vendor.<br>
+                                • Financials: Within budget.
+                            </p>
+                            <span class="good-tag">✅ Professional & Precise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 15: Interactive Construction -->
+        <section class="screen" id="screen-15" data-screen="15">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">03</span>
+                    <h2 class="screen-title">Build Your Own Prompt</h2>
+                    <p class="screen-subtitle">Add components one-by-one and watch the prompt grow</p>
+                </div>
+
+                <div class="construction-workspace">
+                    <div class="component-picker">
+                        <button class="comp-btn" id="btnRole" onclick="toggleComponent('role')">Add Role</button>
+                        <button class="comp-btn" id="btnContext" onclick="toggleComponent('context')">Add
+                            Context</button>
+                        <button class="comp-btn" id="btnTask" onclick="toggleComponent('task')">Add Task</button>
+                        <button class="comp-btn" id="btnConstraints" onclick="toggleComponent('constraints')">Add
+                            Constraints</button>
+                        <button class="comp-btn" id="btnFormat" onclick="toggleComponent('format')">Add Format</button>
+                    </div>
+
+                    <div class="prompt-preview-box">
+                        <div class="preview-header">LIVE PROMPT VIEW</div>
+                        <div id="builtPrompt" class="built-prompt-text italic">Start adding components...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 16: Challenge 1 - Prompt Repair -->
+        <section class="screen" id="screen-16" data-screen="16">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">04</span>
+                    <h2 class="screen-title">Challenge 1: Prompt Repair</h2>
+                    <p class="screen-subtitle">What's missing from this prompt?</p>
+                </div>
+
+                <div class="repair-container">
+                    <div class="broken-prompt-card">
+                        <div class="prompt-bubble">"Send something to my manager about the delay."</div>
+                    </div>
+
+                    <div class="missing-items-check">
+                        <h3>Select which components are MISSING (Multiple):</h3>
+                        <div class="quiz-grid" id="repairQuiz">
+                            <label class="quiz-item"><input type="checkbox" data-ans="true"> Role</label>
+                            <label class="quiz-item"><input type="checkbox" data-ans="true"> Context</label>
+                            <label class="quiz-item"><input type="checkbox" data-ans="false"> Task</label>
+                            <label class="quiz-item"><input type="checkbox" data-ans="true"> Constraints</label>
+                            <label class="quiz-item"><input type="checkbox" data-ans="true"> Format</label>
+                        </div>
+                        <button class="action-btn" onclick="checkRepair()">Check Answer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 17: Challenge 2 - Audience Awareness -->
+        <section class="screen" id="screen-17" data-screen="17">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">05</span>
+                    <h2 class="screen-title">Challenge 2: Prompt Precision</h2>
+                    <p class="screen-subtitle">Same context, different roles. Watch the tone shift.</p>
+                </div>
+
+                <div class="audience-container">
+                    <div class="scenario-box">
+                        <strong>Scenario:</strong> The project is delayed by 1 month. Budget is exceeded.
+                    </div>
+
+                    <div class="audience-toggle">
+                        <button class="toggle-btn active" id="btnAudience1" onclick="switchAudience('leadership')">Role:
+                            Senior
+                            Analyst for Leadership</button>
+                        <button class="toggle-btn" id="btnAudience2" onclick="switchAudience('client')">Role: Customer
+                            Rep for
+                            Client</button>
+                    </div>
+
+                    <div id="audienceOutput" class="prompt-output-display">
+                        <div class="output-content">
+                            "Write a report explaining the delay. Keep it professional and focus on mitigation steps."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 18: Challenge 3 - Constraint Stress Test -->
+        <section class="screen" id="screen-18" data-screen="18">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">06</span>
+                    <h2 class="screen-title">Challenge 3: Constraint Stress Test</h2>
+                    <p class="screen-subtitle">Can you resolve the conflict? Choose the best clear constraint.</p>
+                </div>
+
+                <div class="stress-test-container">
+                    <div class="conflict-card">
+                        <strong>Conflicting Prompt:</strong> "Summarize this 50-page report in exactly 20 words, but
+                        include
+                        every single technical specification."
+                    </div>
+
+                    <div class="resolution-options">
+                        <h3>How would you clarify this?</h3>
+                        <div class="option-card" onclick="selectStressAns(this, false)">
+                            <span>"Summarize it in 10 words only."</span>
+                        </div>
+                        <div class="option-card" onclick="selectStressAns(this, true)">
+                            <span>"Summarize key technical specs in under 100 words in a bulleted list."</span>
+                        </div>
+                        <div class="option-card" onclick="selectStressAns(this, false)">
+                            <span>"Explain it to a 5-year old."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 19: Challenge 4 - Reusable Templates -->
+        <section class="screen" id="screen-19" data-screen="19">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">07</span>
+                    <h2 class="screen-title">Final Task: Build Your Template</h2>
+                    <p class="screen-subtitle">Create a template you can use every week. We'll save it to your library.
+                    </p>
+                </div>
+
+                <div class="template-builder">
+                    <div class="template-selector">
+                        <label>Select Template Type:</label>
+                        <select id="templateType" onchange="loadTemplate()">
+                            <option value="weekly">Weekly Update</option>
+                            <option value="meeting">Meeting Summary</option>
+                            <option value="status">Status Report</option>
+                        </select>
+                    </div>
+
+                    <div class="editor-area">
+                        <textarea id="templateText" class="template-textarea"
+                            rows="8">You are [ROLE]. Given this [CONTEXT], your task is to write a Weekly Update. Use a professional tone and format it as [FORMAT]. Keep it under [CONSTRAINTS].</textarea>
+                        <div class="editor-footer">
+                            <button class="action-btn" onclick="saveToLibrary()">Save to Library 💾</button>
+                        </div>
+                    </div>
+
+                    <div id="libraryStatus" class="library-status hidden">
+                        Prompt Saved! You can now reuse this structure for high-quality results every week.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 20: Module 1.3 Completion -->
+        <section class="screen" id="screen-20" data-screen="20">
+            <div class="screen-content completion-content">
+                <div class="completion-badge">
+                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                        <circle cx="40" cy="40" r="38" stroke="#10B981" stroke-width="4" />
+                        <path d="M25 40L35 50L55 30" stroke="#10B981" stroke-width="4" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <h2 class="completion-title">Module 1.3 Complete! 🎓</h2>
+                <p class="completion-subtitle">You are now a master of structured prompting</p>
+
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🧱</div>
+                        <h3>Framework Mastery</h3>
+                        <p>You know how to build prompts using the 5 core blocks</p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🔍</div>
+                        <h3>Prompt Diagnosis</h3>
+                        <p>You can identify and fix weak instructions instantly</p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🔄</div>
+                        <h3>Audience Precision</h3>
+                        <p>You can adjust prompts to speak to any audience</p>
+                    </div>
+                </div>
+
+                <div class="course-final-message">
+                    <h3>🚀 Total Course Complete!</h3>
+                    <p>You've mastered AI Fundamentals, Workplace Usage, and Prompt Engineering. You're ready to use AI
+                        as a
+                        professional power-user.</p>
+                </div>
+
+                <div class="completion-actions">
+                    <button class="secondary-button" onclick="restartCourse()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10C18 14.4183 14.4183 18 10 18"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M2 10L4 8M2 10L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span>Restart Comprehensive Course</span>
                     </button>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 // STATE MANAGEMENT
 // ===================================
 let currentScreen = 0;
-const totalScreens = 12; // Module 1.1 (6 screens) + Module 1.2 (6 screens)
+const totalScreens = 21; // Module 1.1 (6) + 1.2 (6) + 1.3 (9)
 let comparisonRevealed = false;
 
 // ===================================
@@ -115,8 +115,8 @@ function showScreen(screenIndex) {
     // Control global Continue button visibility
     const globalContinue = document.getElementById('globalContinue');
     if (globalContinue) {
-        // Hide on landing page (0), Module 1.1 completion (5), and Module 1.2 completion (11)
-        if (screenIndex === 0 || screenIndex === 5 || screenIndex === 11) {
+        // Hide on landing page (0), Module 1.1 completion (5), Module 1.2 completion (11), and Module 1.3 completion (20)
+        if (screenIndex === 0 || screenIndex === 5 || screenIndex === 11 || screenIndex === 20) {
             globalContinue.style.display = 'none';
         } else {
             globalContinue.style.display = 'inline-flex';
@@ -743,4 +743,117 @@ function resetPractice() {
             <p>Select a format above to see the transformation</p>
         </div>
     `;
+}
+
+// ===================================
+// MODULE 1.3: PROMPT STRUCTURE LOGIC
+// ===================================
+
+const promptParts = {
+    role: "as a Senior Project Analyst, ",
+    context: "given that the project is delayed by two weeks but the budget is healthy, ",
+    task: "please write a weekly update summary, ",
+    constraints: "keeping it under 100 words in length, ",
+    format: "formatted as three distinct bullet points."
+};
+
+let activeParts = { role: false, context: false, task: false, constraints: false, format: false };
+
+function toggleComponent(part) {
+    activeParts[part] = !activeParts[part];
+    const btn = document.getElementById(`btn${part.charAt(0).toUpperCase() + part.slice(1)}`);
+
+    if (activeParts[part]) {
+        btn.classList.add('active');
+    } else {
+        btn.classList.remove('active');
+    }
+
+    updateBuiltPrompt();
+}
+
+function updateBuiltPrompt() {
+    const box = document.getElementById('builtPrompt');
+    let fullText = "";
+
+    for (let part in activeParts) {
+        if (activeParts[part]) {
+            fullText += `<span class="t-${part}">${promptParts[part]}</span>`;
+        }
+    }
+
+    if (fullText === "") {
+        box.innerHTML = "Start adding components...";
+        box.classList.add('italic');
+    } else {
+        box.innerHTML = fullText;
+        box.classList.remove('italic');
+    }
+}
+
+function checkRepair() {
+    const checkboxes = document.querySelectorAll('#repairQuiz input');
+    let allCorrect = true;
+
+    checkboxes.forEach(cb => {
+        const isMissing = cb.getAttribute('data-ans') === 'true';
+        if (cb.checked !== isMissing) {
+            allCorrect = false;
+        }
+    });
+
+    if (allCorrect) {
+        alert("Correct! You identified the missing building blocks. 🚀");
+    } else {
+        alert("Not quite. Review the prompt—does it have a Role? Context? Constraints? Format?");
+    }
+}
+
+function switchAudience(type) {
+    const output = document.getElementById('audienceOutput');
+    const btn1 = document.getElementById('btnAudience1');
+    const btn2 = document.getElementById('btnAudience2');
+
+    if (type === 'leadership') {
+        btn1.classList.add('active');
+        btn2.classList.remove('active');
+        output.innerHTML = `<div class="output-content">"You are a <b>Senior Analyst</b>. Focus on <b>mitigation strategies and budget health</b>. Format as a <b>Formal Executive Summary</b>."</div>`;
+    } else {
+        btn1.classList.remove('active');
+        btn2.classList.add('active');
+        output.innerHTML = `<div class="output-content">"You are a <b>Customer Success Specialist</b>. Focus on <b>reassurance and updated timelines</b>. Format as a <b>Friendly Email</b>."</div>`;
+    }
+}
+
+function selectStressAns(el, isCorrect) {
+    const cards = document.querySelectorAll('.stress-test-container .option-card');
+    cards.forEach(c => c.classList.remove('correct', 'wrong'));
+
+    if (isCorrect) {
+        el.classList.add('correct');
+        alert("Perfect! This resolves the conflict by setting a realistic length constraint while asking for the most important data points.");
+    } else {
+        el.classList.add('wrong');
+        alert("This doesn't quite solve the 'Stress Test'. Try to find a balance between detail and length.");
+    }
+}
+
+const templates = {
+    weekly: "You are [ROLE]. Given this [CONTEXT], your task is to write a Weekly Update. Use a professional tone and format it as [FORMAT]. Keep it under [CONSTRAINTS].",
+    meeting: "Act as a [ROLE]. Based on the [CONTEXT] of the meeting, please summarize the key decisions. Use [FORMAT] and ensure [CONSTRAINTS] are met.",
+    status: "Prompt: You are a [ROLE]. Status of project: [CONTEXT]. Task: Create a report in [FORMAT]. Important: [CONSTRAINTS]."
+};
+
+function loadTemplate() {
+    const type = document.getElementById('templateType').value;
+    document.getElementById('templateText').value = templates[type];
+}
+
+function saveToLibrary() {
+    const status = document.getElementById('libraryStatus');
+    status.classList.remove('hidden');
+    setTimeout(() => {
+        status.classList.add('hidden');
+        alert("Prompt Template Saved to your Reusable Library! 💾");
+    }, 3000);
 }
