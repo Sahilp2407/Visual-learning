@@ -2074,6 +2074,10 @@ body {
     background: #FFFAF0;
 }
 
+[data-theme="dark"] .status-table tbody tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+}
+
 /* Ensure table container is scrollable and doesn't break layout */
 .transform-output {
     overflow-x: auto;
