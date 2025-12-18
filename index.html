@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Fundamentals & Everyday Copilot | LetsUpgrade</title>
+    <meta name="description"
+        content="Master LLM fundamentals and everyday AI copilot skills with interactive, hands-on learning. Module 1.1 of the AI course by LetsUpgrade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="letsupgrade-logo.png" alt="LetsUpgrade Logo" class="logo-image">
+            </div>
+            <div class="nav-progress" id="navProgress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Screen 0: Landing Page -->
+        <section class="screen active" id="screen-0" data-screen="0">
+            <div class="landing-hero">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Module 1.1 • AI Fundamentals</span>
+                </div>
+                <h1 class="hero-title">
+                    LLM Fundamentals &<br>
+                    <span class="gradient-text">Everyday Copilot</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Master the art of working with AI. Learn how to craft better prompts,<br>
+                    avoid common pitfalls, and unlock AI's true potential in your daily workflow.
+                </p>
+                <button class="cta-button" onclick="startLearning()">
+                    <span>Start Learning</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <div class="outcome-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 4L4 10L16 16L28 10L16 4Z" stroke="#FF6B35" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M4 22L16 28L28 22" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M4 16L16 22L28 16" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>Understand AI Behavior</h3>
+                        <p>Learn how LLMs work and why they respond the way they do</p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <div class="outcome-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path
+                                    d="M28 16C28 22.6274 22.6274 28 16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16Z"
+                                    stroke="#FF6B35" stroke-width="2" />
+                                <path d="M16 10V16L20 20" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3>Master Prompt Clarity</h3>
+                        <p>Write clear, effective prompts that get you better results</p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <div class="outcome-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 4V28M4 16H28" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="16" cy="16" r="8" stroke="#FF6B35" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3>Avoid Hallucinations</h3>
+                        <p>Recognize and prevent AI from generating false information</p>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <p class="tools-label">Tools You'll Master</p>
+                    <div class="tools-logos">
+                        <div class="tool-logo">
+                            <div class="tool-icon chatgpt">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                                        fill="#10A37F" />
+                                    <path d="M12 8V16M8 12H16" stroke="white" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <span>ChatGPT</span>
+                        </div>
+                        <div class="tool-logo">
+                            <div class="tool-icon gemini">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4285F4" />
+                                    <path d="M2 17L12 22L22 17L12 12L2 17Z" fill="#EA4335" />
+                                </svg>
+                            </div>
+                            <span>Gemini</span>
+                        </div>
+                        <div class="tool-logo">
+                            <div class="tool-icon claude">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect width="24" height="24" rx="6" fill="#D97757" />
+                                    <path d="M8 8L12 16L16 8" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <span>Claude</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 1: How AI Works -->
+        <section class="screen" id="screen-1" data-screen="1">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">01</span>
+                    <h2 class="screen-title">How AI Actually Works</h2>
+                    <p class="screen-subtitle">Understanding the fundamentals of Large Language Models</p>
+                </div>
+
+                <div class="visual-demo">
+                    <div class="ai-flow-diagram">
+                        <div class="flow-step" data-step="1">
+                            <div class="flow-icon user-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <circle cx="24" cy="24" r="20" stroke="#FF6B35" stroke-width="2" />
+                                    <circle cx="24" cy="20" r="6" stroke="#FF6B35" stroke-width="2" />
+                                    <path d="M12 36C12 30 16 26 24 26C32 26 36 30 36 36" stroke="#FF6B35"
+                                        stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <h4>Your Prompt</h4>
+                            <p>You ask a question or give instructions</p>
+                        </div>
+
+                        <div class="flow-arrow">
+                            <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
+                                <path d="M0 12H54M54 12L48 6M54 12L48 18" stroke="#FF6B35" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <div class="flow-step" data-step="2">
+                            <div class="flow-icon ai-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <rect x="4" y="4" width="40" height="40" rx="8" stroke="#FF6B35" stroke-width="2" />
+                                    <circle cx="18" cy="20" r="3" fill="#FF6B35" />
+                                    <circle cx="30" cy="20" r="3" fill="#FF6B35" />
+                                    <path d="M16 30C16 30 20 34 24 34C28 34 32 30 32 30" stroke="#FF6B35"
+                                        stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <h4>AI Processing</h4>
+                            <p>Predicts the most likely next words based on patterns</p>
+                        </div>
+
+                        <div class="flow-arrow">
+                            <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
+                                <path d="M0 12H54M54 12L48 6M54 12L48 18" stroke="#FF6B35" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <div class="flow-step" data-step="3">
+                            <div class="flow-icon output-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <rect x="6" y="10" width="36" height="28" rx="4" stroke="#FF6B35"
+                                        stroke-width="2" />
+                                    <path d="M12 18H36M12 24H36M12 30H28" stroke="#FF6B35" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <h4>Response</h4>
+                            <p>You receive the generated text output</p>
+                        </div>
+                    </div>
+
+                    <div class="key-insights">
+                        <div class="insight-card">
+                            <div class="insight-icon">⚡</div>
+                            <div class="insight-content">
+                                <h4>AI Predicts Text</h4>
+                                <p>LLMs generate responses by predicting the most probable next word, based on billions
+                                    of text examples they've learned from.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">🧠</div>
+                            <div class="insight-content">
+                                <h4>No True Understanding</h4>
+                                <p>AI doesn't "understand" like humans do. It recognizes patterns and statistical
+                                    relationships in language.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="nextScreen()">
+                    <span>Continue</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Screen 2: Prompt Clarity -->
+        <section class="screen" id="screen-2" data-screen="2">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">02</span>
+                    <h2 class="screen-title">The Power of Prompt Clarity</h2>
+                    <p class="screen-subtitle">See how clear instructions transform AI responses</p>
+                </div>
+
+                <div class="comparison-demo">
+                    <div class="comparison-container">
+                        <div class="comparison-side bad" id="badPrompt">
+                            <div class="side-label">
+                                <span class="label-icon">❌</span>
+                                <span>Vague Prompt</span>
+                            </div>
+                            <div class="prompt-box">
+                                <div class="prompt-header">User Input</div>
+                                <div class="prompt-text">"Tell me about marketing"</div>
+                            </div>
+                            <div class="output-box">
+                                <div class="output-header">AI Response</div>
+                                <div class="output-text">
+                                    Marketing is a broad field that involves promoting products or services. It includes
+                                    advertising, branding, market research, and customer engagement. Companies use
+                                    various strategies like social media, email campaigns, and content creation.
+                                    Marketing has evolved with digital technology...
+                                </div>
+                                <div class="output-issues">
+                                    <span class="issue-tag">Too Generic</span>
+                                    <span class="issue-tag">Not Actionable</span>
+                                    <span class="issue-tag">Lacks Focus</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-divider">
+                            <div class="vs-badge">VS</div>
+                        </div>
+
+                        <div class="comparison-side good" id="goodPrompt">
+                            <div class="side-label">
+                                <span class="label-icon">✅</span>
+                                <span>Clear Prompt</span>
+                            </div>
+                            <div class="prompt-box">
+                                <div class="prompt-header">User Input</div>
+                                <div class="prompt-text">"Create a 3-step social media marketing plan for a new coffee
+                                    shop targeting college students. Include platform recommendations and content
+                                    ideas."</div>
+                            </div>
+                            <div class="output-box">
+                                <div class="output-header">AI Response</div>
+                                <div class="output-text">
+                                    <strong>3-Step Social Media Plan for College Coffee Shop:</strong><br><br>
+                                    <strong>1. Platform Focus: Instagram & TikTok</strong><br>
+                                    - Visual content performs best with students<br><br>
+                                    <strong>2. Content Strategy:</strong><br>
+                                    - Study spot highlights<br>
+                                    - Student discount announcements<br>
+                                    - Behind-the-scenes coffee making<br><br>
+                                    <strong>3. Engagement Tactics:</strong><br>
+                                    - Weekly giveaways<br>
+                                    - User-generated content contests
+                                </div>
+                                <div class="output-benefits">
+                                    <span class="benefit-tag">Specific</span>
+                                    <span class="benefit-tag">Actionable</span>
+                                    <span class="benefit-tag">Structured</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="toggle-button" onclick="toggleComparison()">
+                        <span id="toggleText">See the Improvement</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M15 8L10 13L5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="clarity-tips">
+                    <h3>Keys to Clear Prompts</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <span class="tip-number">1</span>
+                            <p><strong>Be Specific:</strong> Define exactly what you need</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-number">2</span>
+                            <p><strong>Add Context:</strong> Mention your audience or use case</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-number">3</span>
+                            <p><strong>Request Format:</strong> Ask for lists, steps, or structure</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="nextScreen()">
+                    <span>Continue</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Screen 3: Hallucination Demo -->
+        <section class="screen" id="screen-3" data-screen="3">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">03</span>
+                    <h2 class="screen-title">Understanding AI Hallucinations</h2>
+                    <p class="screen-subtitle">Learn to recognize and prevent false information</p>
+                </div>
+
+                <div class="hallucination-demo">
+                    <div class="demo-section problem-section" id="problemSection">
+                        <div class="section-badge danger">
+                            <span>⚠️</span>
+                            <span>Risky Prompt</span>
+                        </div>
+
+                        <div class="demo-prompt">
+                            <div class="prompt-label">User Prompt</div>
+                            <div class="prompt-content">
+                                "List five books written by Elon Musk"
+                            </div>
+                        </div>
+
+                        <div class="demo-response hallucination">
+                            <div class="response-label">
+                                <span>AI Response</span>
+                                <span class="warning-badge">Contains Hallucinations</span>
+                            </div>
+                            <div class="response-content">
+                                <ol>
+                                    <li class="false-item">
+                                        <span>"The Future of Humanity" (2019)</span>
+                                        <div class="warning-indicator">❌ Fabricated</div>
+                                    </li>
+                                    <li class="false-item">
+                                        <span>"Electric Dreams: The Tesla Story" (2015)</span>
+                                        <div class="warning-indicator">❌ Fabricated</div>
+                                    </li>
+                                    <li class="false-item">
+                                        <span>"Mars and Beyond" (2021)</span>
+                                        <div class="warning-indicator">❌ Fabricated</div>
+                                    </li>
+                                    <li class="false-item">
+                                        <span>"Innovation Unleashed" (2018)</span>
+                                        <div class="warning-indicator">❌ Fabricated</div>
+                                    </li>
+                                    <li class="false-item">
+                                        <span>"The Entrepreneur's Mindset" (2020)</span>
+                                        <div class="warning-indicator">❌ Fabricated</div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="hallucination-explanation">
+                                <strong>Why This Happened:</strong> Elon Musk hasn't written any books. The AI
+                                "hallucinated" these titles because it was asked to provide a list, so it generated
+                                plausible-sounding book titles rather than admitting uncertainty.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="solution-arrow">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="19" stroke="#FF6B35" stroke-width="2" />
+                            <path d="M20 12V28M20 28L14 22M20 28L26 22" stroke="#FF6B35" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Better Approach</span>
+                    </div>
+
+                    <div class="demo-section solution-section" id="solutionSection">
+                        <div class="section-badge success">
+                            <span>✅</span>
+                            <span>Safer Prompt</span>
+                        </div>
+
+                        <div class="demo-prompt">
+                            <div class="prompt-label">Improved Prompt</div>
+                            <div class="prompt-content">
+                                "List books written by Elon Musk. If you're not certain or if he hasn't written any
+                                books, please say 'I don't know' or provide accurate information about his published
+                                works."
+                            </div>
+                        </div>
+
+                        <div class="demo-response accurate">
+                            <div class="response-label">
+                                <span>AI Response</span>
+                                <span class="success-badge">Accurate</span>
+                            </div>
+                            <div class="response-content">
+                                <p>Elon Musk has not authored any books himself. However, there are several biographies
+                                    and books written <em>about</em> him by other authors, such as:</p>
+                                <ul>
+                                    <li>"Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future" by Ashlee Vance
+                                    </li>
+                                    <li>"Power Play: Tesla, Elon Musk, and the Bet of the Century" by Tim Higgins</li>
+                                </ul>
+                                <p>If you're looking for Musk's own thoughts, his Twitter/X posts and interviews are the
+                                    primary sources.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prevention-tips">
+                    <h3>How to Prevent Hallucinations</h3>
+                    <div class="prevention-grid">
+                        <div class="prevention-card">
+                            <div class="prevention-icon">🛡️</div>
+                            <h4>Allow Uncertainty</h4>
+                            <p>Tell AI it's okay to say "I don't know"</p>
+                        </div>
+                        <div class="prevention-card">
+                            <div class="prevention-icon">🔍</div>
+                            <h4>Ask for Sources</h4>
+                            <p>Request citations or references when possible</p>
+                        </div>
+                        <div class="prevention-card">
+                            <div class="prevention-icon">✓</div>
+                            <h4>Verify Critical Info</h4>
+                            <p>Always fact-check important claims</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="nextScreen()">
+                    <span>Continue</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Screen 4: Interactive Playground -->
+        <section class="screen" id="screen-4" data-screen="4">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <span class="screen-number">04</span>
+                    <h2 class="screen-title">Try It Yourself</h2>
+                    <p class="screen-subtitle">Practice writing better prompts with instant feedback</p>
+                </div>
+
+                <div class="playground-container">
+                    <div class="playground-instructions">
+                        <h3>Your Challenge</h3>
+                        <p>Improve the prompt below to make it clearer and more specific. The AI will analyze your
+                            improvements!</p>
+                    </div>
+
+                    <div class="playground-editor">
+                        <div class="editor-header">
+                            <span>Prompt Editor</span>
+                            <div class="editor-actions">
+                                <button class="action-btn" onclick="resetPrompt()">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path
+                                            d="M2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M2 8L4 6M2 8L4 10" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="userPrompt" class="prompt-textarea"
+                            placeholder="Type your improved prompt here..."
+                            rows="6">Write a blog post about productivity</textarea>
+
+                        <button class="analyze-button" onclick="analyzePrompt()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M17 17L13 13M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                            <span>Analyze My Prompt</span>
+                        </button>
+                    </div>
+
+                    <div class="feedback-panel" id="feedbackPanel">
+                        <div class="feedback-header">
+                            <span>AI Analysis</span>
+                        </div>
+                        <div class="feedback-content" id="feedbackContent">
+                            <div class="feedback-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <circle cx="24" cy="24" r="20" stroke="#333" stroke-width="2"
+                                        stroke-dasharray="4 4" />
+                                    <path d="M24 16V24M24 32H24.02" stroke="#333" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <p>Click "Analyze My Prompt" to get feedback</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="score-display" id="scoreDisplay">
+                        <div class="score-circle">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#1a1a1a" stroke-width="8" />
+                                <circle id="scoreCircle" cx="60" cy="60" r="54" fill="none" stroke="#FF6B35"
+                                    stroke-width="8" stroke-dasharray="339.292" stroke-dashoffset="339.292"
+                                    transform="rotate(-90 60 60)" stroke-linecap="round" />
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number" id="scoreNumber">0</span>
+                                <span class="score-label">Score</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="nextScreen()">
+                    <span>Continue</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Screen 5: Completion -->
+        <section class="screen" id="screen-5" data-screen="5">
+            <div class="screen-content completion-content">
+                <div class="completion-badge">
+                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                        <circle cx="40" cy="40" r="38" stroke="#FF6B35" stroke-width="4" />
+                        <path d="M25 40L35 50L55 30" stroke="#FF6B35" stroke-width="4" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <h2 class="completion-title">Module 1.1 Complete! 🎉</h2>
+                <p class="completion-subtitle">You've mastered the fundamentals of working with LLMs</p>
+
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="18" stroke="#FF6B35" stroke-width="2" />
+                                <path d="M14 20L18 24L26 16" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>AI Behavior</h3>
+                        <p>You understand how LLMs predict and generate text</p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="18" stroke="#FF6B35" stroke-width="2" />
+                                <path d="M14 20L18 24L26 16" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>Prompt Clarity</h3>
+                        <p>You can write specific, effective prompts that get better results</p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="18" stroke="#FF6B35" stroke-width="2" />
+                                <path d="M14 20L18 24L26 16" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3>Hallucination Awareness</h3>
+                        <p>You know how to prevent and identify AI-generated false information</p>
+                    </div>
+                </div>
+
+                <div class="next-steps">
+                    <h3>What's Next?</h3>
+                    <p>Continue your AI learning journey with Module 1.2</p>
+                    <button class="next-module-button" disabled>
+                        <span>Continue to Module 1.2</span>
+                        <span class="coming-soon">Coming Soon</span>
+                    </button>
+                </div>
+
+                <div class="completion-actions">
+                    <button class="secondary-button" onclick="restartCourse()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10C18 14.4183 14.4183 18 10 18"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M2 10L4 8M2 10L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span>Restart Course</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
