@@ -1879,11 +1879,11 @@ body {
 
 .transformation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    align-items: stretch;
 }
-
 
 .transformation-card {
     background: var(--color-white);
@@ -1892,6 +1892,19 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Special Layout for Table Card to ensure it's not clipped */
+.transformation-card.wide-card {
+    grid-column: 1 / -1;
+    /* Spans full width of the grid */
+    max-width: 900px;
+    margin: 0 auto;
+    /* Centers the card horizontally */
+    width: 100%;
 }
 
 .transformation-card:hover {
@@ -1944,20 +1957,17 @@ body {
 
 .status-table {
     width: 100%;
-    min-width: 500px;
-    /* Forces enough width for 3 columns */
     border-collapse: separate;
     border-spacing: 0;
-    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border: 1.25px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-md);
     overflow: hidden;
     table-layout: fixed;
-    /* Ensures controlled column widths */
 }
 
 .status-table th,
 .status-table td {
-    padding: 1rem 0.75rem;
+    padding: 1.25rem 1.25rem;
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     word-wrap: break-word;
@@ -1967,22 +1977,22 @@ body {
 .status-table th {
     background: var(--color-cream-light);
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-secondary);
-    border-bottom: 1.5px solid rgba(255, 107, 53, 0.2);
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    border-bottom: 2px solid rgba(255, 107, 53, 0.12);
 }
 
-/* Specific Column Widths */
+/* Specific Column Widths - Balanced */
 .status-table th:nth-child(1),
 .status-table td:nth-child(1) {
-    width: 30%;
+    width: 25%;
 }
 
 .status-table th:nth-child(2),
 .status-table td:nth-child(2) {
-    width: 30%;
+    width: 35%;
 }
 
 .status-table th:nth-child(3),
@@ -1991,10 +2001,10 @@ body {
 }
 
 .status-table td {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     background: var(--color-white);
     color: var(--color-text-primary);
-    line-height: 1.4;
+    line-height: 1.6;
 }
 
 .status-table tbody tr:last-child td {
