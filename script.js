@@ -2,7 +2,7 @@
 // STATE MANAGEMENT
 // ===================================
 let currentScreen = 0;
-const totalScreens = 21; // Module 1.1 (6) + 1.2 (6) + 1.3 (9)
+const totalScreens = 22; // Module 1.1 (6) + 1.2 (6) + 1.3 (10)
 let comparisonRevealed = false;
 
 // ===================================
@@ -100,6 +100,11 @@ function showScreen(screenIndex) {
                 setTimeout(() => {
                     initializeScreen2TypingEffect();
                 }, 300);
+            }
+
+            // Trigger Timer for Task 1 in Module 1.3
+            if (screenIndex === 14) {
+                startPressureTimer();
             }
         }, 100);
     }
@@ -857,3 +862,142 @@ function saveToLibrary() {
         alert("Prompt Template Saved to your Reusable Library! 💾");
     }, 3000);
 }
+
+// ===================================
+// MODULE 1.3: ENHANCED CHALLENGE LOGIC
+// ===================================
+
+let timerInterval;
+let timeLeft = 60;
+
+function startPressureTimer() {
+    timeLeft = 60;
+    const timerDisplay = document.getElementById('pressureTimer');
+    if (!timerDisplay) return;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = `Time Remaining: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up! Let's see what you built.");
+        }
+    }, 1000);
+}
+
+function checkPressureTask() {
+    const role = document.getElementById('p1_role').value;
+    const ctx = document.getElementById('p1_context').value;
+    const task = document.getElementById('p1_task').value;
+    const cons = document.getElementById('p1_constraints').value;
+    const fmt = document.getElementById('p1_format').value;
+
+    if (!role || !ctx || !task || !cons || !fmt) {
+        alert("Wait! Your prompt is missing building blocks. High-stakes communication needs all 5 parts.");
+        return;
+    }
+
+    if (role === "PM" && ctx === "Lag" && task === "Update" && cons === "Fact" && fmt === "Bullets") {
+        clearInterval(timerInterval);
+        alert("Perfect! You've successfully translated messy notes into a structured, VP-ready prompt under pressure. 🚀");
+    } else {
+        alert("The structure is there, but some choices might not fit the VP's preferences. Try again for a better result.");
+    }
+}
+
+function selectBattleWinner(el, type) {
+    const cards = document.querySelectorAll('.battle-card');
+    cards.forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+
+    const judgmentBox = document.getElementById('judgmentBox');
+    judgmentBox.classList.remove('hidden');
+
+    if (type === 'structured') {
+        el.setAttribute('data-correct', 'true');
+    } else {
+        el.setAttribute('data-correct', 'false');
+    }
+}
+
+function submitJudgment() {
+    const selected = document.querySelector('.battle-card.selected');
+    const input = document.getElementById('battleJustification').value;
+
+    if (!input) {
+        alert("Please explain why you made this choice.");
+        return;
+    }
+
+    if (selected.getAttribute('data-correct') === 'true') {
+        alert("Correct! Prompt B is structured without noise. Over-engineering (Prompt A) often confuses the AI and leads to redundant explanations.");
+    } else {
+        alert("Actually, Prompt B is better. It uses the 5-part structure clearly, while Prompt A includes too much conversational 'noise' that makes the instruction less precise.");
+    }
+}
+
+const simData = {
+    leadership: {
+        prompt: "Role: Senior Analyst. Constraints: Strategic tone, focus on ROI and Mitigation.",
+        output: "Executive Summary: 15% dip identified. Recommended action: Diversify suppliers and prioritize high-margin SKUs."
+    },
+    client: {
+        prompt: "Role: Customer Success Lead. Constraints: Empathetic tone, focus on Transparency.",
+        output: "Client Email: We value your partnership. Supply issues have caused a minor dip. Here is our plan to ensure your orders stay priority."
+    },
+    team: {
+        prompt: "Role: Operations Manager. Constraints: Direct tone, focus on Recovery Tasks.",
+        output: "Internal Memo: Q4 Target Missed. All hands on deck. Shift focus to resolving backlog by Friday."
+    }
+};
+
+function updateSim(audience) {
+    const btns = document.querySelectorAll('.sim-btn');
+    btns.forEach(b => b.classList.remove('active'));
+
+    const content = simData[audience];
+    document.getElementById('simPromptContent').innerText = content.prompt;
+    document.getElementById('simOutputContent').innerText = content.output;
+
+    if (audience === 'leadership') document.getElementById('sim1').classList.add('active');
+    if (audience === 'client') document.getElementById('sim2').classList.add('active');
+    if (audience === 'team') document.getElementById('sim3').classList.add('active');
+}
+
+function checkFailPart(el) {
+    const part = el.getAttribute('data-part');
+    if (part === 'Constraints') {
+        el.style.background = "#10B981";
+        el.style.color = "white";
+        alert("Spot on! The prompt failed because it lacked specific Constraints on 'Tone' and 'Risk Focus'.");
+    } else {
+        el.style.background = "#EF4444";
+        el.style.color = "white";
+        alert("That's part of the prompt, but the real issue here was the lack of Constraints (Tone & Missing Data).");
+    }
+}
+
+function flagGovernance(el, isCorrect) {
+    const opts = document.querySelectorAll('.safe-opt');
+    opts.forEach(o => o.classList.remove('correct'));
+
+    if (isCorrect) {
+        el.classList.add('correct');
+        alert("Excellent. You've identified a massive risk. AI should never be given autonomous approval power over finances or legal decisions. It should remain an 'assistant' in the loop.");
+    } else {
+        alert("DANGEROUS CHOICE! Giving AI autonomous approval over budgets or legal actions is a major governance failure. Try again.");
+    }
+}
+
+function saveTemplateToLibrary() {
+    alert("Template Saved! You've built a reusable framework that ensures consistent brand tone and output quality across your team. 💾");
+}
+
+function restartCourse() {
+    currentScreen = 0;
+    showScreen(0);
+    window.scrollTo(0, 0);
+}
+// Trigger timer for Task 1 when arriving at Screen 14
+// This will be called from showScreen()

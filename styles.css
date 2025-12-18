@@ -2787,4 +2787,242 @@ body {
 
 .hidden {
     display: none;
+}/* ===================================
+   MODULE 1.3: ENHANCED CHALLENGE STYLES
+   =================================== */
+
+.challenge-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.challenge-item {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    border: 2px solid rgba(255, 107, 53, 0.1);
+    text-align: center;
+}
+
+.chall-no {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--color-orange);
+    color: white;
+    border-radius: 999px;
+    font-weight: 800;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Framework Visualization */
+.framework-viz {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: var(--spacing-xl) auto;
+    max-width: 600px;
+}
+
+.viz-block {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 2px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.viz-block:hover {
+    transform: translateX(10px);
+}
+
+.viz-block.role {
+    border-color: #FF6B35;
+}
+
+.viz-block.context {
+    border-color: #4ECDC4;
+}
+
+.viz-block.task {
+    border-color: #45B7D1;
+}
+
+.viz-block.constraints {
+    border-color: #96CEB4;
+}
+
+.viz-block.format {
+    border-color: #FFEEAD;
+}
+
+.viz-icon {
+    font-size: 1.5rem;
+}
+
+/* Pressure Workspace */
+.pressure-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.notes-card {
+    background: #FFF9E6;
+    border: 2px dashed #E5B100;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+}
+
+.notes-header {
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #856404;
+}
+
+.builder-timer {
+    background: #2d2d2d;
+    color: #ff4d4d;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.builder-grid {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.p-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 0.9375rem;
+}
+
+/* Battle Grid */
+.battle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.battle-card {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.battle-card:hover {
+    border-color: var(--color-orange);
+    transform: translateY(-5px);
+}
+
+.battle-card.selected {
+    border-color: var(--color-orange);
+    background: var(--color-cream-light);
+}
+
+.battle-tag {
+    font-weight: 800;
+    color: var(--color-orange);
+    margin-bottom: 8px;
+}
+
+.battle-content {
+    font-style: italic;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.battle-reason {
+    margin-top: 12px;
+    opacity: 0;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.selected .battle-reason {
+    opacity: 1;
+}
+
+/* Governance Challenge */
+.unsafe-instruction {
+    background: #FFF0F0;
+    border: 2px solid #FFCACA;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.unsafe-tag {
+    color: #D00;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.safe-opt {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid #ddd;
+    margin-bottom: var(--spacing-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.safe-opt:hover {
+    background: #F0F9FF;
+    border-color: #0EA5E9;
+}
+
+.safe-opt.correct {
+    background: #ECFDF5;
+    border-color: #10B981;
+}
+
+/* Dark Theme Overrides for New Challenges */
+[data-theme="dark"] .challenge-item,
+[data-theme="dark"] .viz-block,
+[data-theme="dark"] .battle-card,
+[data-theme="dark"] .safe-opt {
+    background: #1A1A1A;
+    color: white;
+    border-color: #333;
+}
+
+[data-theme="dark"] .notes-card {
+    background: #2A1A00;
+    border-color: #856404;
+}
+
+[data-theme="dark"] .notes-header {
+    color: #E5B100;
+}
+
+[data-theme="dark"] .unsafe-instruction {
+    background: #2A0000;
+    border-color: #500;
+}
+
+[data-theme="dark"] .p-select {
+    background: #2d2d2d;
+    color: white;
+    border-color: #444;
 }
