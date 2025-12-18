@@ -1879,10 +1879,11 @@ body {
 
 .transformation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
 }
+
 
 .transformation-card {
     background: var(--color-white);
@@ -1948,6 +1949,7 @@ body {
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: var(--radius-md);
     overflow: hidden;
+    table-layout: auto;
 }
 
 .status-table th,
@@ -1955,6 +1957,8 @@ body {
     padding: var(--spacing-md);
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    word-wrap: break-word;
+    vertical-align: top;
 }
 
 .status-table th {
@@ -1965,12 +1969,14 @@ body {
     letter-spacing: 0.05em;
     color: var(--color-text-primary);
     border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+    white-space: nowrap;
 }
 
 .status-table td {
     font-size: 0.9375rem;
     background: var(--color-white);
     color: var(--color-text-primary);
+    line-height: 1.6;
 }
 
 .status-table tbody tr:last-child td {
@@ -1979,6 +1985,12 @@ body {
 
 .status-table tbody tr:hover {
     background: var(--color-cream-light);
+}
+
+/* Ensure table container is scrollable on small screens */
+.transform-output {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 
