@@ -1432,6 +1432,12 @@ body {
     height: 16px;
 }
 
+/* Global Continue Button - Initially Hidden */
+.global-continue {
+    display: none;
+}
+
+
 /* ===================================
    ANIMATIONS
    =================================== */

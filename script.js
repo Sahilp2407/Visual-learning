@@ -88,6 +88,17 @@ function showScreen(screenIndex) {
     } else {
         navbar.style.opacity = '1';
     }
+
+    // Control global Continue button visibility
+    const globalContinue = document.getElementById('globalContinue');
+    if (globalContinue) {
+        // Hide on landing page (0) and completion page (5)
+        if (screenIndex === 0 || screenIndex === 5) {
+            globalContinue.style.display = 'none';
+        } else {
+            globalContinue.style.display = 'inline-flex';
+        }
+    }
 }
 
 function smoothScrollToTop() {
