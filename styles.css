@@ -1805,13 +1805,16 @@ body {
 
 /* Capabilities Grid */
 .capabilities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
 }
 
 .capability-card {
+    flex: 1 1 300px;
+    max-width: 380px;
     background: var(--color-white);
     border: 2px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-xl);
@@ -1819,6 +1822,7 @@ body {
     transition: all var(--transition-base);
     box-shadow: var(--shadow-md);
 }
+
 
 .capability-card:hover {
     border-color: var(--color-orange);
