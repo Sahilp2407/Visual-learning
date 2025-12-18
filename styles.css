@@ -1944,53 +1944,88 @@ body {
 
 .status-table {
     width: 100%;
+    min-width: 500px;
+    /* Forces enough width for 3 columns */
     border-collapse: separate;
     border-spacing: 0;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
     border-radius: var(--radius-md);
     overflow: hidden;
-    table-layout: auto;
+    table-layout: fixed;
+    /* Ensures controlled column widths */
 }
 
 .status-table th,
 .status-table td {
-    padding: var(--spacing-md);
+    padding: 1rem 0.75rem;
     text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     word-wrap: break-word;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .status-table th {
     background: var(--color-cream-light);
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-primary);
-    border-bottom: 2px solid rgba(255, 107, 53, 0.2);
-    white-space: nowrap;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+    border-bottom: 1.5px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Specific Column Widths */
+.status-table th:nth-child(1),
+.status-table td:nth-child(1) {
+    width: 30%;
+}
+
+.status-table th:nth-child(2),
+.status-table td:nth-child(2) {
+    width: 30%;
+}
+
+.status-table th:nth-child(3),
+.status-table td:nth-child(3) {
+    width: 40%;
 }
 
 .status-table td {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     background: var(--color-white);
     color: var(--color-text-primary);
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .status-table tbody tr:last-child td {
     border-bottom: none;
 }
 
-.status-table tbody tr:hover {
-    background: var(--color-cream-light);
+.status-table tbody tr:hover td {
+    background: #FFFAF0;
 }
 
-/* Ensure table container is scrollable on small screens */
+/* Ensure table container is scrollable and doesn't break layout */
 .transform-output {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+}
+
+/* Custom Scrollbar for better looks */
+.transform-output::-webkit-scrollbar {
+    height: 6px;
+}
+
+.transform-output::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.transform-output::-webkit-scrollbar-thumb {
+    background: var(--color-orange-light);
+    border-radius: 10px;
 }
 
 

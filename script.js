@@ -683,7 +683,8 @@ function generateTable(text) {
             <thead>
                 <tr>
                     <th>Item</th>
-                    <th>Details</th>
+                    <th>Action/Impact</th>
+                    <th>Note</th>
                 </tr>
             </thead>
             <tbody>
@@ -692,10 +693,17 @@ function generateTable(text) {
     sentences.forEach((sentence, index) => {
         const trimmed = sentence.trim();
         if (trimmed) {
+            // Simulated split for a 3-column look in practice
+            const parts = trimmed.split(/[:,-]/);
+            const col1 = parts[0] || `Point ${index + 1}`;
+            const col2 = parts[1] || trimmed;
+            const col3 = parts[2] || "Requires Action";
+
             table += `
                 <tr>
-                    <td><strong>Point ${index + 1}</strong></td>
-                    <td>${trimmed}</td>
+                    <td><strong>${col1}</strong></td>
+                    <td>${col2}</td>
+                    <td>${col3}</td>
                 </tr>
             `;
         }
