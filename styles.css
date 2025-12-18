@@ -2637,11 +2637,42 @@ body {
 .comp-btn {
     padding: 0.75rem 1.25rem;
     background: var(--color-white);
+    color: var(--color-text-primary);
     border: 2px solid var(--color-gray-200);
     border-radius: var(--radius-md);
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+/* Dark Theme Support for Module 1.3 Components */
+[data-theme="dark"] .comp-btn,
+[data-theme="dark"] .quiz-item,
+[data-theme="dark"] .option-card {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .comp-btn:hover,
+[data-theme="dark"] .quiz-item:hover,
+[data-theme="dark"] .option-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-orange);
+}
+
+[data-theme="dark"] .comp-btn.active {
+    background: var(--color-orange);
+    color: white;
+    border-color: var(--color-orange);
+}
+
+[data-theme="dark"] .built-prompt-text.italic {
+    color: #888;
+}
+
+[data-theme="dark"] .block-description {
+    color: var(--color-white);
 }
 
 .comp-btn:hover {
