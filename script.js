@@ -122,6 +122,17 @@ function showScreen(screenIndex) {
             globalContinue.style.display = 'inline-flex';
         }
     }
+
+    // Control global Back button visibility
+    const globalBack = document.getElementById('globalBack');
+    if (globalBack) {
+        // Hide on landing page (0)
+        if (screenIndex === 0) {
+            globalBack.style.display = 'none';
+        } else {
+            globalBack.style.display = 'inline-flex';
+        }
+    }
 }
 
 function smoothScrollToTop() {
