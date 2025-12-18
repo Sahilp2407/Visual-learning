@@ -196,13 +196,15 @@ body {
 
 /* Dark theme support for back button */
 [data-theme="dark"] .back-button {
-    background: rgba(45, 45, 45, 0.9);
-    color: var(--color-white);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    /* Subtle white background */
+    color: var(--color-text-primary);
+    /* Actual white in dark theme */
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] .back-button:hover {
-    background: rgba(60, 60, 60, 1);
+    background: rgba(255, 255, 255, 0.15);
     border-color: var(--color-orange);
 }
 
