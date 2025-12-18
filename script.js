@@ -2,7 +2,7 @@
 // STATE MANAGEMENT
 // ===================================
 let currentScreen = 0;
-const totalScreens = 6;
+const totalScreens = 12; // Module 1.1 (6 screens) + Module 1.2 (6 screens)
 let comparisonRevealed = false;
 
 // ===================================
@@ -115,8 +115,8 @@ function showScreen(screenIndex) {
     // Control global Continue button visibility
     const globalContinue = document.getElementById('globalContinue');
     if (globalContinue) {
-        // Hide on landing page (0) and completion page (5)
-        if (screenIndex === 0 || screenIndex === 5) {
+        // Hide on landing page (0), Module 1.1 completion (5), and Module 1.2 completion (11)
+        if (screenIndex === 0 || screenIndex === 5 || screenIndex === 11) {
             globalContinue.style.display = 'none';
         } else {
             globalContinue.style.display = 'inline-flex';
@@ -606,3 +606,122 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ===================================
+// MODULE 1.2: INTERACTIVE FUNCTIONS
+// ===================================
+
+// Practice text transformation
+function transformText(format) {
+    const input = document.getElementById('practiceInput').value.trim();
+    const output = document.getElementById('practiceOutput');
+
+    if (!input) {
+        output.innerHTML = `
+            <div class="output-placeholder">
+                <p style="color: var(--color-danger);">Please enter some text first!</p>
+            </div>
+        `;
+        return;
+    }
+
+    let transformedText = '';
+
+    switch (format) {
+        case 'summary':
+            transformedText = generateSummary(input);
+            break;
+        case 'email':
+            transformedText = generateEmail(input);
+            break;
+        case 'table':
+            transformedText = generateTable(input);
+            break;
+    }
+
+    output.innerHTML = `
+        <div class="transform-output">
+            <div class="transform-header" style="background: var(--color-cream-light); padding: var(--spacing-md); border-radius: var(--radius-md) var(--radius-md) 0 0; margin: calc(var(--spacing-lg) * -1) calc(--spacing-lg) * -1) var(--spacing-md); border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
+                <strong>Transformed to ${format.charAt(0).toUpperCase() + format.slice(1)}:</strong>
+            </div>
+            ${transformedText}
+        </div>
+    `;
+}
+
+function generateSummary(text) {
+    // Simple bullet point summary
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    let summary = '<ul style="list-style-position: inside; padding-left: 0;">';
+
+    sentences.forEach(sentence => {
+        const trimmed = sentence.trim();
+        if (trimmed) {
+            summary += `<li style="margin-bottom: var(--spacing-xs);">${trimmed}</li>`;
+        }
+    });
+
+    summary += '</ul>';
+    return summary;
+}
+
+function generateEmail(text) {
+    return `
+        <p><strong>Subject:</strong> Project Update</p>
+        <p>Hi Team,</p>
+        <p>${text}</p>
+        <p>Please let me know if you have any questions or need additional information.</p>
+        <p>Best regards</p>
+    `;
+}
+
+function generateTable(text) {
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+
+    let table = `
+        <table class="status-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid rgba(0, 0, 0, 0.08); background: var(--color-cream-light); font-weight: 700; font-size: 0.8125rem;">Item</th>
+                    <th style="padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid rgba(0, 0, 0, 0.08); background: var(--color-cream-light); font-weight: 700; font-size: 0.8125rem;">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    sentences.forEach((sentence, index) => {
+        const trimmed = sentence.trim();
+        if (trimmed) {
+            table += `
+                <tr>
+                    <td style="padding: var(--spacing-sm); border-bottom: 1px solid rgba(0, 0, 0, 0.08); font-size: 0.875rem;">Point ${index + 1}</td>
+                    <td style="padding: var(--spacing-sm); border-bottom: 1px solid rgba(0, 0, 0, 0.08); font-size: 0.875rem;">${trimmed}</td>
+                </tr>
+            `;
+        }
+    });
+
+    table += `
+            </tbody>
+        </table>
+    `;
+
+    return table;
+}
+
+function resetPractice() {
+    const textarea = document.getElementById('practiceInput');
+    const output = document.getElementById('practiceOutput');
+
+    textarea.value = 'Meeting with client went well. Budget approved for Q1. Need to finalize timeline. Sarah will lead design. Launch target is March 15.';
+
+    output.innerHTML = `
+        <div class="output-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="20" stroke="#333" stroke-width="2" stroke-dasharray="4 4"/>
+                <path d="M24 16V24M24 32H24.02" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p>Select a format above to see the transformation</p>
+        </div>
+    `;
+}
