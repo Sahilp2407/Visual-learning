@@ -20,6 +20,29 @@ function initializeApp() {
 
     // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Initialize theme
+    initializeTheme();
+}
+
+// ===================================
+// THEME MANAGEMENT
+// ===================================
+function initializeTheme() {
+    // Check for saved theme preference or default to 'light'
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    // Optional: Add a subtle animation
+    document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
 }
 
 function setupEventListeners() {
