@@ -1432,7 +1432,12 @@ body {
     height: 16px;
 }
 
-/* Global Continue Button - Initially Hidden */
+/* Hide screen-specific Continue buttons */
+.screen .next-button {
+    display: none !important;
+}
+
+/* Global Continue Button - Initially Hidden, controlled by JS */
 .global-continue {
     display: none;
 }
