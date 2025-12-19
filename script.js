@@ -2,7 +2,7 @@
 // STATE MANAGEMENT
 // ===================================
 let currentScreen = 0;
-const totalScreens = 22; // Module 1.1 (6) + 1.2 (6) + 1.3 (10)
+const totalScreens = 21; // Module 1.1 (6) + 1.2 (6) + 1.3 (9)
 let comparisonRevealed = false;
 
 // ===================================
