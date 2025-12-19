@@ -2998,14 +2998,16 @@ body {
 }
 
 .battle-card:hover {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
     border-color: var(--color-orange);
+    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.1);
 }
 
 .battle-card.selected {
     border-color: var(--color-orange);
     background: var(--color-cream-light);
-    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15), 0 20px 40px rgba(255, 107, 53, 0.2);
+    transform: scale(1.02);
 }
 
 .battle-tag {
@@ -3083,6 +3085,7 @@ body {
 [data-theme="dark"] .battle-card.selected {
     background: #1E1B16;
 }
+
 /* ===================================
    CUSTOM MODAL / POPUP STYLES
    =================================== */
@@ -3115,7 +3118,7 @@ body {
     max-width: 420px;
     width: 90%;
     text-align: center;
-    box-shadow: 
+    box-shadow:
         0 20px 25px -5px rgba(0, 0, 0, 0.1),
         0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transform: translateY(20px) scale(0.95);
@@ -3194,4 +3197,157 @@ body {
 
 [data-theme="dark"] .modal-message {
     color: #94A3B8;
+}
+
+/* Judgment Box Premium Styling */
+.judgment-box {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: rgba(255, 107, 53, 0.05);
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    animation: slideUpFade 0.5s ease-out;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.judgment-box label {
+    font-weight: 700;
+    color: var(--color-orange-dark);
+    font-size: 0.9375rem;
+}
+
+.judgment-box input[type="text"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--color-white);
+    border: 2px solid #E2E8F0;
+    border-radius: var(--radius-xl);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.judgment-box input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+}
+
+.judgment-box .action-btn.mini {
+    align-self: flex-start;
+    background: var(--color-orange);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+}
+
+.judgment-box .action-btn.mini:hover {
+    background: var(--color-orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 53, 0.35);
+}
+
+/* Dark Theme for Judgment Box */
+[data-theme="dark"] .judgment-box {
+    background: rgba(255, 107, 53, 0.1);
+    border-color: rgba(255, 107, 53, 0.2);
+}
+
+[data-theme="dark"] .judgment-box input[type="text"] {
+    background: #0F172A;
+    border-color: #334155;
+    color: white;
+}
+
+.label-icon {
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+
+.box-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+/* Audience Sim Buttons Premium */
+.sim-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 6px;
+    border-radius: var(--radius-xl);
+    width: fit-content;
+    border: 1px solid #E2E8F0;
+}
+
+.sim-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sim-btn.active {
+    background: var(--color-orange);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+[data-theme="dark"] .sim-controls {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: #334155;
+}
+
+/* Fail Detector Quiz Options */
+.quiz-opt {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    border: 2px solid #F1F5F9;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 700;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.quiz-opt:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-orange);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .quiz-opt {
+    background: #1E293B;
+    border-color: #334155;
+    color: white;
 }
