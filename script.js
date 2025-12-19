@@ -1028,8 +1028,47 @@ function flagGovernance(el, isCorrect) {
     }
 }
 
+const blueprintData = {
+    weekly: {
+        role: "Senior Project Manager",
+        context: "Raw project data/notes from the past 7 days",
+        task: "Draft a high-level Weekly Executive Update",
+        constraints: "Neutral tone, max 3 bullets per section",
+        format: "Markdown (Professional Columns)"
+    },
+    meeting: {
+        role: "Executive Assistant",
+        context: "Audio transcript or messy shorthand notes",
+        task: "Create a Decisions & Actions Summary",
+        constraints: "Active voice, focus on 'Owners' and 'Deadlines'",
+        format: "Checklist Structure"
+    },
+    status: {
+        role: "Risk Compliance Officer",
+        context: "Operational logs and timeline deviations",
+        task: "Identify Red Flags and Mitigation Steps",
+        constraints: "Highly specific, no conversational fillers",
+        format: "Risk Level Table (Red/Amber/Green)"
+    }
+};
+
+function loadBlueprint(type, el) {
+    // UI selection
+    const btns = document.querySelectorAll('.blueprint-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+
+    // Content update
+    const data = blueprintData[type];
+    document.querySelector('#row-role .fw-pill').innerText = data.role;
+    document.querySelector('#row-context .fw-pill').innerText = data.context;
+    document.querySelector('#row-task .fw-pill').innerText = data.task;
+    document.querySelector('#row-constraints .fw-pill').innerText = data.constraints;
+    document.querySelector('#row-format .fw-pill').innerText = data.format;
+}
+
 function saveTemplateToLibrary() {
-    showFeedback("Productivity Boost", "Template Saved! You've built a reusable framework that ensures consistent brand tone and output quality across your team. 💾", "success");
+    showFeedback("Enterprise Asset Created", "Template successfully deployed to your Reusable Library. You've now built a framework that ensures consistent AI output quality across your entire workflow. 💾", "success");
 }
 
 function restartCourse() {

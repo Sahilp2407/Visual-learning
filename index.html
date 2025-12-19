@@ -1424,26 +1424,70 @@
                     <p class="screen-subtitle">Create high-value templates for your weekly workflow.</p>
                 </div>
 
-                <div class="template-blocks-workspace">
-                    <div class="scenario-selector">
-                        <label>Typical Workflow:</label>
-                        <select id="workflowType" onchange="refreshTemplate()">
-                            <option value="weekly">Weekly Update</option>
-                            <option value="summary">Meeting Summary</option>
-                            <option value="status">Project Status Report</option>
-                        </select>
+                <div class="template-studio">
+                    <div class="studio-sidebar">
+                        <h3 class="studio-label">🏗️ Select Blueprint</h3>
+                        <div class="blueprint-list">
+                            <button class="blueprint-btn active" onclick="loadBlueprint('weekly', this)">
+                                <span class="bp-icon">📅</span>
+                                <div class="bp-info">
+                                    <span class="bp-name">Weekly Sync</span>
+                                    <span class="bp-desc">Reporting & Updates</span>
+                                </div>
+                            </button>
+                            <button class="blueprint-btn" onclick="loadBlueprint('meeting', this)">
+                                <span class="bp-icon">📝</span>
+                                <div class="bp-info">
+                                    <span class="bp-name">Meeting Brief</span>
+                                    <span class="bp-desc">Summaries & Actions</span>
+                                </div>
+                            </button>
+                            <button class="blueprint-btn" onclick="loadBlueprint('status', this)">
+                                <span class="bp-icon">📊</span>
+                                <div class="bp-info">
+                                    <span class="bp-name">Project Pulse</span>
+                                    <span class="bp-desc">Risk & Timeline Analysis</span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="block-preview-card">
-                        <div class="bp-row role"><span class="bp-tag">ROLE</span> [Defined Role]</div>
-                        <div class="bp-row context"><span class="bp-tag">CONTEXT</span> [Input Messy Notes/Data]</div>
-                        <div class="bp-row task"><span class="bp-tag">TASK</span> [Action Step]</div>
-                        <div class="bp-row const"><span class="bp-tag">CONSTRAINTS</span> [Tone, Length, No-Go's]</div>
-                        <div class="bp-row format"><span class="bp-tag">FORMAT</span> [Final Visual Structure]</div>
-                    </div>
+                    <div class="studio-canvas">
+                        <div class="canvas-header">
+                            <span class="canvas-tag">DRAFT MODE</span>
+                            <span class="canvas-title">Prompt Framework</span>
+                        </div>
 
-                    <button class="action-btn wide" onclick="saveTemplateToLibrary()">Save to "My Reusable Prompts"
-                        💾</button>
+                        <div class="framework-editor">
+                            <div class="framework-row" id="row-role">
+                                <span class="fw-label">ACT AS:</span>
+                                <span class="fw-pill role">[Defined Role]</span>
+                            </div>
+                            <div class="framework-row" id="row-context">
+                                <span class="fw-label">CONTEXT:</span>
+                                <span class="fw-pill context">[Input Messy Notes/Data]</span>
+                            </div>
+                            <div class="framework-row" id="row-task">
+                                <span class="fw-label">TASK:</span>
+                                <span class="fw-pill task">[Action Step]</span>
+                            </div>
+                            <div class="framework-row" id="row-constraints">
+                                <span class="fw-label">AVOID:</span>
+                                <span class="fw-pill constraints">[Tone, Length, No-Go's]</span>
+                            </div>
+                            <div class="framework-row" id="row-format">
+                                <span class="fw-label">FORMAT:</span>
+                                <span class="fw-pill format">[Visual Structure]</span>
+                            </div>
+                        </div>
+
+                        <div class="workspace-actions">
+                            <button class="action-btn" onclick="saveTemplateToLibrary()">
+                                <span class="btn-icon">💾</span> Save to Enterprise Library
+                            </button>
+                            <span class="autosave-pulse">● Ready to deploy</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
