@@ -1310,27 +1310,41 @@
                 </div>
 
                 <div class="audience-sim">
-                    <div class="data-anchor">
-                        <strong>Data Anchor:</strong> "Q4 sales are down by 15% due to supply chain issues."
+                    <div class="data-anchor-card">
+                        <span class="anchor-label">📍 SOURCE DATA</span>
+                        <p class="anchor-text">"Q4 sales are down by 15% due to supply chain issues."</p>
                     </div>
 
-                    <div class="sim-controls">
-                        <button class="sim-btn active" id="sim1" onclick="updateSim('leadership')">To:
-                            Leadership</button>
-                        <button class="sim-btn" id="sim2" onclick="updateSim('client')">To: Client</button>
-                        <button class="sim-btn" id="sim3" onclick="updateSim('team')">To: Internal Team</button>
-                    </div>
-
-                    <div class="sim-display">
-                        <div class="sim-prompt-box">
-                            <div class="label">Structure Used:</div>
-                            <div id="simPromptContent">"Role: Senior Analyst. Constraints: Strategic tone, focus on
-                                ROI."</div>
+                    <div class="sim-workflow-grid">
+                        <div class="sim-sidebar">
+                            <h4 class="sidebar-title">Select Audience</h4>
+                            <div class="sim-controls-vertical">
+                                <button class="sim-btn-pill active" id="sim1" onclick="updateSim('leadership')">
+                                    <span class="btn-icon">🏛️</span> Leadership
+                                </button>
+                                <button class="sim-btn-pill" id="sim2" onclick="updateSim('client')">
+                                    <span class="btn-icon">🤝</span> Client
+                                </button>
+                                <button class="sim-btn-pill" id="sim3" onclick="updateSim('team')">
+                                    <span class="btn-icon">👥</span> Internal Team
+                                </button>
+                            </div>
                         </div>
-                        <div class="sim-output-box">
-                            <div class="label">AI Predicted Outcome:</div>
-                            <div id="simOutputContent">"Analytical summary highlighting recovery plan and cost-saving
-                                measures."
+
+                        <div class="sim-main-display">
+                            <div class="output-card-premium prompt-side">
+                                <div class="card-tag">PROMPT STRUCTURE</div>
+                                <div id="simPromptContent" class="card-body-text">
+                                    "Role: Senior Analyst. Constraints: Strategic tone, focus on ROI and Mitigation."
+                                </div>
+                            </div>
+
+                            <div class="output-card-premium result-side">
+                                <div class="card-tag">AI GENERATED OUTCOME</div>
+                                <div id="simOutputContent" class="card-body-text italic">
+                                    "Executive Summary: 15% dip identified. Recommended action: Diversify suppliers and
+                                    prioritize high-margin SKUs."
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -986,7 +986,7 @@ const simData = {
 };
 
 function updateSim(audience) {
-    const btns = document.querySelectorAll('.sim-btn');
+    const btns = document.querySelectorAll('.sim-btn-pill');
     btns.forEach(b => b.classList.remove('active'));
 
     const content = simData[audience];

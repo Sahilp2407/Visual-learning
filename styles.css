@@ -3351,3 +3351,162 @@ body {
     border-color: #334155;
     color: white;
 }
+/* Task 3 Premium Overhaul */
+.audience-sim {
+    margin-top: var(--spacing-xl);
+}
+
+.data-anchor-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid var(--color-orange);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-2xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.anchor-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-orange-dark);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.anchor-text {
+    font-size: 1.125rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.sim-workflow-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+.sidebar-title {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-md);
+}
+
+.sim-controls-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.sim-btn-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.25rem;
+    background: var(--color-white);
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius-xl);
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sim-btn-pill:hover {
+    border-color: var(--color-orange);
+    color: var(--color-orange-dark);
+    transform: translateX(8px);
+}
+
+.sim-btn-pill.active {
+    background: var(--color-orange);
+    color: white;
+    border-color: var(--color-orange);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.btn-icon {
+    font-size: 1.25rem;
+}
+
+.sim-main-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.output-card-premium {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-2xl);
+    border: 1px solid #F1F5F9;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.output-card-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.card-tag {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: #0F172A;
+    color: white;
+    padding: 4px 12px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    border-radius: 999px;
+    letter-spacing: 0.1em;
+}
+
+.prompt-side {
+    background: #FAFAFA;
+}
+
+.result-side {
+    border-left: 4px solid #10B981;
+}
+
+.card-body-text {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+/* Dark Theme Task 3 */
+[data-theme="dark"] .data-anchor-card {
+    background: #1E293B;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .anchor-text {
+    color: #E2E8F0;
+}
+
+[data-theme="dark"] .sim-btn-pill {
+    background: #1A1C1E;
+    border-color: #333;
+}
+
+[data-theme="dark"] .output-card-premium {
+    background: #1A1C1E;
+    border-color: #333;
+}
+
+[data-theme="dark"] .prompt-side {
+    background: #0F172A;
+}
+
+[data-theme="dark"] .card-body-text {
+    color: #CBD5E1;
+}
