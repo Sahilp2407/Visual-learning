@@ -140,6 +140,39 @@ function showScreen(screenIndex) {
     }
 }
 
+// ===================================
+// MODAL / FEEDBACK SYSTEM
+// ===================================
+function showFeedback(title, message, type = 'success') {
+    const modal = document.getElementById('customModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMessage = document.getElementById('modalMessage');
+    const modalIcon = document.getElementById('modalIcon');
+
+    if (!modal || !modalTitle || !modalMessage || !modalIcon) return;
+
+    modalTitle.innerText = title;
+    modalMessage.innerText = message;
+
+    // Set icon based on type
+    modalIcon.className = 'modal-icon ' + type;
+    modalIcon.innerText = type === 'success' ? '✅' : '⚠️';
+
+    modal.classList.add('active');
+    modal.classList.remove('hidden');
+}
+
+function closeModal() {
+    const modal = document.getElementById('customModal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+}
+
+
 function smoothScrollToTop() {
     window.scrollTo({
         top: 0,
@@ -808,9 +841,9 @@ function checkRepair() {
     });
 
     if (allCorrect) {
-        alert("Correct! You identified the missing building blocks. 🚀");
+        showFeedback("Success", "Correct! You identified the missing building blocks. 🚀", "success");
     } else {
-        alert("Not quite. Review the prompt—does it have a Role? Context? Constraints? Format?");
+        showFeedback("Keep Trying", "Not quite. Review the prompt—does it have a Role? Context? Constraints? Format?", "error");
     }
 }
 
@@ -836,10 +869,10 @@ function selectStressAns(el, isCorrect) {
 
     if (isCorrect) {
         el.classList.add('correct');
-        alert("Perfect! This resolves the conflict by setting a realistic length constraint while asking for the most important data points.");
+        showFeedback("Well Done", "Perfect! This resolves the conflict by setting a realistic length constraint while asking for the most important data points.", "success");
     } else {
         el.classList.add('wrong');
-        alert("This doesn't quite solve the 'Stress Test'. Try to find a balance between detail and length.");
+        showFeedback("Not Quite", "This doesn't quite solve the Stress Test. Try to find a balance between detail and length.", "error");
     }
 }
 
@@ -859,7 +892,7 @@ function saveToLibrary() {
     status.classList.remove('hidden');
     setTimeout(() => {
         status.classList.add('hidden');
-        alert("Prompt Template Saved to your Reusable Library! 💾");
+        showFeedback("Saved", "Prompt Template Saved to your Reusable Library! 💾", "success");
     }, 3000);
 }
 
@@ -881,7 +914,7 @@ function startPressureTimer() {
         timerDisplay.innerText = `Time Remaining: ${timeLeft}s`;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            alert("Time's up! Let's see what you built.");
+            showFeedback("Time's Up", "Time's up! Let's see what you built.", "error");
         }
     }, 1000);
 }
@@ -894,15 +927,15 @@ function checkPressureTask() {
     const fmt = document.getElementById('p1_format').value;
 
     if (!role || !ctx || !task || !cons || !fmt) {
-        alert("Wait! Your prompt is missing building blocks. High-stakes communication needs all 5 parts.");
+        showFeedback("Missing Info", "Wait! Your prompt is missing building blocks. High-stakes communication needs all 5 parts.", "error");
         return;
     }
 
     if (role === "PM" && ctx === "Lag" && task === "Update" && cons === "Fact" && fmt === "Bullets") {
         clearInterval(timerInterval);
-        alert("Perfect! You've successfully translated messy notes into a structured, VP-ready prompt under pressure. 🚀");
+        showFeedback("Mission Success", "Perfect! You've successfully translated messy notes into a structured, VP-ready prompt under pressure. 🚀", "success");
     } else {
-        alert("The structure is there, but some choices might not fit the VP's preferences. Try again for a better result.");
+        showFeedback("Review Selection", "The structure is there, but some choices might not fit the VP's preferences. Try again for a better result.", "error");
     }
 }
 
@@ -926,14 +959,14 @@ function submitJudgment() {
     const input = document.getElementById('battleJustification').value;
 
     if (!input) {
-        alert("Please explain why you made this choice.");
+        showFeedback("Quick Note", "Please explain why you made this choice.", "error");
         return;
     }
 
     if (selected.getAttribute('data-correct') === 'true') {
-        alert("Correct! Prompt B is structured without noise. Over-engineering (Prompt A) often confuses the AI and leads to redundant explanations.");
+        showFeedback("Sharp Judgment", "Correct! Prompt B is structured without noise. Over-engineering (Prompt A) often confuses the AI and leads to redundant explanations.", "success");
     } else {
-        alert("Actually, Prompt B is better. It uses the 5-part structure clearly, while Prompt A includes too much conversational 'noise' that makes the instruction less precise.");
+        showFeedback("Learning Point", "Actually, Prompt B is better. It uses the 5-part structure clearly, while Prompt A includes too much conversational noise that makes the instruction less precise.", "error");
     }
 }
 
@@ -970,11 +1003,11 @@ function checkFailPart(el) {
     if (part === 'Constraints') {
         el.style.background = "#10B981";
         el.style.color = "white";
-        alert("Spot on! The prompt failed because it lacked specific Constraints on 'Tone' and 'Risk Focus'.");
+        showFeedback("Perfect Fix", "Spot on! The prompt failed because it lacked specific Constraints on Tone and Risk Focus.", "success");
     } else {
         el.style.background = "#EF4444";
         el.style.color = "white";
-        alert("That's part of the prompt, but the real issue here was the lack of Constraints (Tone & Missing Data).");
+        showFeedback("Try Again", "That's part of the prompt, but the real issue here was the lack of Constraints (Tone & Missing Data).", "error");
     }
 }
 
@@ -984,14 +1017,14 @@ function flagGovernance(el, isCorrect) {
 
     if (isCorrect) {
         el.classList.add('correct');
-        alert("Excellent. You've identified a massive risk. AI should never be given autonomous approval power over finances or legal decisions. It should remain an 'assistant' in the loop.");
+        showFeedback("Safe & Smart", "Excellent. You've identified a massive risk. AI should never be given autonomous approval power over finances or legal decisions. It should remain an assistant in the loop.", "success");
     } else {
-        alert("DANGEROUS CHOICE! Giving AI autonomous approval over budgets or legal actions is a major governance failure. Try again.");
+        showFeedback("Governance Alert", "DANGEROUS CHOICE! Giving AI autonomous approval over budgets or legal actions is a major governance failure. Try again.", "error");
     }
 }
 
 function saveTemplateToLibrary() {
-    alert("Template Saved! You've built a reusable framework that ensures consistent brand tone and output quality across your team. 💾");
+    showFeedback("Productivity Boost", "Template Saved! You've built a reusable framework that ensures consistent brand tone and output quality across your team. 💾", "success");
 }
 
 function restartCourse() {
