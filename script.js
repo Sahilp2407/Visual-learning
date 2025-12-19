@@ -999,14 +999,19 @@ function updateSim(audience) {
 }
 
 function checkFailPart(el) {
+    const tiles = document.querySelectorAll('.diagnostic-tile');
+    tiles.forEach(t => {
+        t.classList.remove('active-correct', 'active-wrong');
+        t.style.background = ""; // Clear any old inline styles from previous versions
+        t.style.color = "";
+    });
+
     const part = el.getAttribute('data-part');
     if (part === 'Constraints') {
-        el.style.background = "#10B981";
-        el.style.color = "white";
+        el.classList.add('active-correct');
         showFeedback("Perfect Fix", "Spot on! The prompt failed because it lacked specific Constraints on Tone and Risk Focus.", "success");
     } else {
-        el.style.background = "#EF4444";
-        el.style.color = "white";
+        el.classList.add('active-wrong');
         showFeedback("Try Again", "That's part of the prompt, but the real issue here was the lack of Constraints (Tone & Missing Data).", "error");
     }
 }

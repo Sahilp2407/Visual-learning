@@ -1361,23 +1361,54 @@
                     <p class="screen-subtitle">The AI output failed. Can you identify the missing link?</p>
                 </div>
 
-                <div class="fail-detector">
-                    <div class="output-fail-card">
-                        <div class="fail-label">Bad AI Output:</div>
-                        <p>"...the report is very long and has too many details. It doesn't mention the budget risks we
-                            talked
-                            about and uses a very informal tone that sounds like a text message."</p>
+                <div class="fail-detector-premium">
+                    <div class="failure-log-card">
+                        <div class="failure-header">
+                            <span class="failure-badge">⚠️ OUTPUT FAILURE DETECTED</span>
+                            <span class="failure-timestamp">Log ID: AI-ERR-902</span>
+                        </div>
+                        <div class="failure-body">
+                            <div class="body-label">REPORTED AI OUTPUT:</div>
+                            <p class="body-text">"...the report is very long and has too many details. It doesn't
+                                mention the budget risks we talked about and uses a very informal tone that sounds like
+                                a text message."</p>
+                        </div>
                     </div>
 
-                    <div class="fail-quiz">
-                        <h3>What was missing or weak in the prompt?</h3>
-                        <div class="quiz-options">
-                            <div class="quiz-opt" data-part="Constraints" onclick="checkFailPart(this)">Constraints
-                                (Tone &
-                                Focus)</div>
-                            <div class="quiz-opt" data-part="Role" onclick="checkFailPart(this)">Role</div>
-                            <div class="quiz-opt" data-part="Task" onclick="checkFailPart(this)">Task</div>
-                            <div class="quiz-opt" data-part="Output" onclick="checkFailPart(this)">Output Format</div>
+                    <div class="diagnostic-zone">
+                        <h3 class="diagnostic-title">Run Logic Diagnostics</h3>
+                        <p class="diagnostic-subtitle">Identify the missing or weak building block in the original
+                            prompt:</p>
+
+                        <div class="diagnostic-grid">
+                            <div class="diagnostic-tile" data-part="Constraints" onclick="checkFailPart(this)">
+                                <div class="tile-icon">⚖️</div>
+                                <div class="tile-content">
+                                    <div class="tile-name">Constraints</div>
+                                    <div class="tile-desc">Tone, Focus, and Guardrails</div>
+                                </div>
+                            </div>
+                            <div class="diagnostic-tile" data-part="Role" onclick="checkFailPart(this)">
+                                <div class="tile-icon">👤</div>
+                                <div class="tile-content">
+                                    <div class="tile-name">Role</div>
+                                    <div class="tile-desc">Expertise and Persona</div>
+                                </div>
+                            </div>
+                            <div class="diagnostic-tile" data-part="Task" onclick="checkFailPart(this)">
+                                <div class="tile-icon">🎯</div>
+                                <div class="tile-content">
+                                    <div class="tile-name">Task</div>
+                                    <div class="tile-desc">Primary Objective</div>
+                                </div>
+                            </div>
+                            <div class="diagnostic-tile" data-part="Output" onclick="checkFailPart(this)">
+                                <div class="tile-icon">📄</div>
+                                <div class="tile-content">
+                                    <div class="tile-name">Output Format</div>
+                                    <div class="tile-desc">Structure & Layout</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

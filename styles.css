@@ -3510,3 +3510,177 @@ body {
 [data-theme="dark"] .card-body-text {
     color: #CBD5E1;
 }
+
+/* Task 4: Fail Detector Premium Styles */
+.fail-detector-premium {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.failure-log-card {
+    background: #FFF5F5;
+    border: 2px solid #FEB2B2;
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    box-shadow: 0 10px 15px -3px rgba(245, 101, 101, 0.1);
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.failure-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid #FED7D7;
+    padding-bottom: var(--spacing-sm);
+}
+
+.failure-badge {
+    color: #C53030;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.failure-timestamp {
+    color: #9B2C2C;
+    font-size: 0.75rem;
+    font-family: 'Courier New', Courier, monospace;
+    opacity: 0.7;
+}
+
+.body-label {
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: #E53E3E;
+    margin-bottom: 8px;
+}
+
+.body-text {
+    font-size: 1.125rem;
+    color: #2D3748;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.diagnostic-zone {
+    text-align: center;
+}
+
+.diagnostic-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+}
+
+.diagnostic-subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.diagnostic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.diagnostic-tile {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    border: 2px solid #F1F5F9;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+}
+
+.diagnostic-tile:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-orange);
+    box-shadow: var(--shadow-lg);
+    background: #FFFAF0;
+}
+
+.tile-icon {
+    font-size: 2rem;
+    background: #F8FAFC;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+}
+
+.diagnostic-tile:hover .tile-icon {
+    background: var(--color-orange);
+    transform: rotate(-10deg);
+}
+
+.tile-name {
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.tile-desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+}
+
+/* Dark Theme for Task 4 */
+[data-theme="dark"] .failure-log-card {
+    background: #2D1B1B;
+    border-color: #4A2B2B;
+}
+
+[data-theme="dark"] .body-text {
+    color: #FED7D7;
+}
+
+[data-theme="dark"] .diagnostic-tile {
+    background: #1A1C1E;
+    border-color: #333;
+}
+
+[data-theme="dark"] .tile-name {
+    color: white;
+}
+
+[data-theme="dark"] .tile-icon {
+    background: #0F172A;
+}
+
+.diagnostic-tile.active-correct {
+    background: #10B981 !important;
+    border-color: #059669 !important;
+}
+
+.diagnostic-tile.active-correct .tile-name,
+.diagnostic-tile.active-correct .tile-desc {
+    color: white;
+}
+
+.diagnostic-tile.active-wrong {
+    background: #EF4444 !important;
+    border-color: #DC2626 !important;
+}
+
+.diagnostic-tile.active-wrong .tile-name,
+.diagnostic-tile.active-wrong .tile-desc {
+    color: white;
+}
