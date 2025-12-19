@@ -2787,242 +2787,299 @@ body {
 
 .hidden {
     display: none;
-}/* ===================================
-   MODULE 1.3: ENHANCED CHALLENGE STYLES
+}
+
+/* ===================================
+   MODULE 1.3: PREMIUM SIMULATOR UI
    =================================== */
 
 .challenge-preview-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
 }
 
 .challenge-item {
-    background: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-xl);
-    border: 2px solid rgba(255, 107, 53, 0.1);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgba(255, 107, 53, 0.15);
     text-align: center;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-base);
+}
+
+.challenge-item:hover {
+    transform: translateY(-8px);
+    background: var(--color-white);
+    border-color: var(--color-orange);
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
 }
 
 .chall-no {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--color-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-orange), #FF8555);
     color: white;
-    border-radius: 999px;
+    border-radius: 12px;
     font-weight: 800;
-    margin-bottom: var(--spacing-sm);
+    margin: 0 auto var(--spacing-md);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
 /* Framework Visualization */
 .framework-viz {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     margin: var(--spacing-xl) auto;
-    max-width: 600px;
+    max-width: 650px;
 }
 
 .viz-block {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
     background: var(--color-white);
-    border-radius: var(--radius-lg);
-    border: 2px solid #eee;
-    transition: transform 0.3s ease;
+    border-radius: var(--radius-xl);
+    border-left: 6px solid #eee;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .viz-block:hover {
-    transform: translateX(10px);
+    transform: scale(1.03);
+    box-shadow: var(--shadow-lg);
 }
 
 .viz-block.role {
-    border-color: #FF6B35;
+    border-left-color: #FF6B35;
 }
 
 .viz-block.context {
-    border-color: #4ECDC4;
+    border-left-color: #4ECDC4;
 }
 
 .viz-block.task {
-    border-color: #45B7D1;
+    border-left-color: #45B7D1;
 }
 
 .viz-block.constraints {
-    border-color: #96CEB4;
+    border-left-color: #96CEB4;
 }
 
 .viz-block.format {
-    border-color: #FFEEAD;
+    border-left-color: #FFEEAD;
 }
 
 .viz-icon {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
 }
 
-/* Pressure Workspace */
+/* Task 1: Pressure Workspace Premium */
 .pressure-workspace {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-lg);
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
 }
 
 .notes-card {
-    background: #FFF9E6;
-    border: 2px dashed #E5B100;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-xl);
+    background: #fff;
+    background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding: var(--spacing-2xl);
+    border-radius: 4px;
+    position: relative;
+    box-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.05),
+        2px 2px 2px rgba(0, 0, 0, 0.05),
+        10px 10px 20px rgba(0, 0, 0, 0.1);
+    transform: rotate(-0.5deg);
+    border: none;
 }
 
 .notes-header {
+    font-family: var(--font-display);
     font-weight: 800;
-    margin-bottom: 12px;
-    color: #856404;
+    font-size: 1.125rem;
+    color: var(--color-orange-dark);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.builder-timer {
-    background: #2d2d2d;
-    color: #ff4d4d;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-weight: bold;
+.notes-body {
+    font-family: 'Georgia', serif;
+    font-style: italic;
     font-size: 1.25rem;
+    line-height: 1.8;
+    color: #334155;
+}
+
+/* Timer HUD - Digital Neon */
+.builder-timer {
+    background: #0F172A;
+    color: #F43F5E;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 0.15em;
+    border: 2px solid rgba(244, 63, 94, 0.3);
+    box-shadow: 0 0 25px rgba(244, 63, 94, 0.25);
     margin-bottom: var(--spacing-md);
     text-align: center;
+    animation: flash-glow 2s infinite ease-in-out;
 }
 
-.builder-grid {
-    display: grid;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+@keyframes flash-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(244, 63, 94, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(244, 63, 94, 0.45);
+    }
 }
 
 .p-select {
+    appearance: none;
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-family: inherit;
-    font-size: 0.9375rem;
+    padding: 1.25rem;
+    background: var(--color-white);
+    border: 2px solid #E2E8F0;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 12px;
 }
 
-/* Battle Grid */
+.p-select:hover {
+    border-color: var(--color-orange);
+    transform: scale(1.015);
+}
+
+/* Battle Grid Premium */
 .battle-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .battle-card {
     background: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-xl);
-    border: 2px solid #eee;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-2xl);
+    border: 2px solid #F1F5F9;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--shadow-lg);
     position: relative;
+    overflow: hidden;
 }
 
 .battle-card:hover {
+    transform: translateY(-12px);
     border-color: var(--color-orange);
-    transform: translateY(-5px);
 }
 
 .battle-card.selected {
     border-color: var(--color-orange);
     background: var(--color-cream-light);
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
 }
 
 .battle-tag {
     font-weight: 800;
     color: var(--color-orange);
-    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    background: rgba(255, 107, 53, 0.12);
+    padding: 4px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
-.battle-content {
-    font-style: italic;
-    font-size: 0.9375rem;
-    line-height: 1.6;
+/* Final Outcome Design */
+.completion-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.battle-reason {
-    margin-top: 12px;
-    opacity: 0;
-    font-weight: bold;
-    font-size: 0.8rem;
+.outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin: var(--spacing-2xl) 0;
 }
 
-.selected .battle-reason {
-    opacity: 1;
-}
-
-/* Governance Challenge */
-.unsafe-instruction {
-    background: #FFF0F0;
-    border: 2px solid #FFCACA;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--spacing-xl);
-}
-
-.unsafe-tag {
-    color: #D00;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.safe-opt {
+.outcome-card {
     background: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    border: 1px solid #ddd;
-    margin-bottom: var(--spacing-sm);
-    cursor: pointer;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-2xl);
+    border: 2px solid #f0f0f0;
     transition: all 0.3s ease;
 }
 
-.safe-opt:hover {
-    background: #F0F9FF;
-    border-color: #0EA5E9;
+.outcome-card:hover {
+    border-color: var(--color-success);
+    transform: translateY(-5px);
 }
 
-.safe-opt.correct {
-    background: #ECFDF5;
-    border-color: #10B981;
+.outcome-card h4 {
+    color: var(--color-success);
+    margin-bottom: 8px;
 }
 
-/* Dark Theme Overrides for New Challenges */
+/* Dark Theme Overrides */
 [data-theme="dark"] .challenge-item,
 [data-theme="dark"] .viz-block,
 [data-theme="dark"] .battle-card,
-[data-theme="dark"] .safe-opt {
-    background: #1A1A1A;
+[data-theme="dark"] .outcome-card {
+    background: #1A1C1E;
     color: white;
     border-color: #333;
 }
 
 [data-theme="dark"] .notes-card {
-    background: #2A1A00;
-    border-color: #856404;
+    background: #121212;
+    background-image: radial-gradient(#222 1px, transparent 1px);
+    color: #e2e8f0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme="dark"] .notes-header {
-    color: #E5B100;
-}
-
-[data-theme="dark"] .unsafe-instruction {
-    background: #2A0000;
-    border-color: #500;
+[data-theme="dark"] .notes-body {
+    color: #cbd5e1;
 }
 
 [data-theme="dark"] .p-select {
-    background: #2d2d2d;
+    background: #0F172A;
     color: white;
-    border-color: #444;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .battle-card.selected {
+    background: #1E1B16;
 }
