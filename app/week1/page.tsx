@@ -13,7 +13,11 @@ import Topic5_Hallucinations from '../components/Topic5_Hallucinations'
 import Topic6_WorkdayIntegration from '../components/Topic6_WorkdayIntegration'
 import StageIndicator from '../components/StageIndicator'
 
+import LoginScreen from '../components/LoginScreen'
+import { useEffect } from 'react'
+
 export default function Week1Page() {
+  const [user, setUser] = useState<string | null>(null)
   const [isSimulatorActive, setIsSimulatorActive] = useState(false)
   const [complete, setComplete] = useState(false)
 
@@ -23,6 +27,45 @@ export default function Week1Page() {
 
   // State for Stage Indicator
   const [currentStage, setCurrentStage] = useState<'READ' | 'VISUAL' | 'SIMULATOR'>('READ')
+
+  // --- PERSISTENCE LOGIC ---
+
+  // 1. Check for logged in user on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem('visual_learning_user')
+    if (savedUser) {
+      setUser(savedUser)
+      loadUserData(savedUser)
+    }
+  }, [])
+
+  // 2. Load user data function
+  const loadUserData = (username: string) => {
+    const savedProgress = localStorage.getItem(`visual_learning_progress_${username}`)
+    if (savedProgress) {
+      const { unlocked, active } = JSON.parse(savedProgress)
+      setUnlockedTopicIds(unlocked || ['1'])
+      setActiveTopicId(active || '1')
+    }
+    setIsSimulatorActive(true) // Skip intro if returning
+  }
+
+  // 3. Save progress whenever it changes
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`visual_learning_progress_${user}`, JSON.stringify({
+        unlocked: unlockedTopicIds,
+        active: activeTopicId
+      }))
+    }
+  }, [unlockedTopicIds, activeTopicId, user])
+
+
+  const handleLogin = (username: string) => {
+    setUser(username)
+    localStorage.setItem('visual_learning_user', username)
+    loadUserData(username)
+  }
 
   const handleTopicComplete = (currentId: string) => {
     // Calculate next ID
@@ -56,6 +99,11 @@ export default function Week1Page() {
       default:
         return <div className="flex items-center justify-center h-full text-[var(--foreground-muted)]">Topic {activeTopicId} Loading...</div>
     }
+  }
+
+  // If not logged in, show Login Screen
+  if (!user) {
+    return <LoginScreen onLogin={handleLogin} />
   }
 
   return (
