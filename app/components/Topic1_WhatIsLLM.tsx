@@ -697,7 +697,6 @@ function PredictionGame({ onComplete }: { onComplete: () => void }) {
     const currentRound = ROUNDS[round]
 
     return (
-    return (
         <div className="w-full max-w-4xl text-center">
             {/* Header */}
             <div className="flex justify-between items-center mb-8 px-6 py-3 bg-white/50 backdrop-blur-md rounded-full border border-white/40 shadow-sm mx-auto w-fit gap-12">
