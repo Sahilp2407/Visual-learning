@@ -12,15 +12,21 @@ const TOPICS = [
     { id: '4', title: 'Why LLMs Feel Smart', emoji: '🧠' },
     { id: '5', title: 'Hallucinations', emoji: '✨' },
     { id: '6', title: 'Workday Integration', emoji: '💼' },
+    { id: '7', title: 'Prompt Engineering Lab', emoji: '🏗️' },
+    { id: '8', title: 'Techniques: Few-Shot & CoT', emoji: '🥋' },
+    { id: '9', title: 'Model Arena: GPT vs Claude', emoji: '⚔️' },
+    { id: '10', title: 'Building Your Copilot System', emoji: '🏗️' },
+    { id: '11', title: 'Week 1: Completion', emoji: '🏆' },
 ]
 
 interface SimulatorSidebarProps {
     activeTopicId: string
     unlockedTopicIds: string[]
     onSelectTopic: (id: string) => void
+    onLogout?: () => void
 }
 
-export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSelectTopic }: SimulatorSidebarProps) {
+export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSelectTopic, onLogout }: SimulatorSidebarProps) {
     const [isExpanded, setIsExpanded] = useState(true)
 
     const completedCount = TOPICS.filter(t => unlockedTopicIds.includes((parseInt(t.id) + 1).toString())).length
@@ -208,6 +214,19 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                 )}
             </AnimatePresence>
 
-        </div>
+
+
+            {/* Logout Button (Bottom) */}
+            <div className="p-6 relative z-10 border-t border-gray-200/60">
+                <button
+                    onClick={onLogout}
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold text-gray-500 hover:text-red-500 hover:bg-red-50 transition-all group"
+                >
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0">Logout</span>
+                    <span className="group-hover:opacity-0 transition-opacity absolute">End Session</span>
+                </button>
+            </div>
+
+        </div >
     )
 }

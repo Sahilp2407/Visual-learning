@@ -11,6 +11,11 @@ import Topic3_Tokens from '../components/Topic3_Tokens'
 import Topic4_Memory from '../components/Topic4_Memory'
 import Topic5_Hallucinations from '../components/Topic5_Hallucinations'
 import Topic6_WorkdayIntegration from '../components/Topic6_WorkdayIntegration'
+import Topic7_PromptStructure from '../components/Topic7_PromptStructure'
+import Topic8_PromptTechniques from '../components/Topic8_PromptTechniques'
+import Topic9_ModelComparison from '../components/Topic9_ModelComparison'
+import Topic10_PersonalSystem from '../components/Topic10_PersonalSystem'
+import Topic11_Reflection from '../components/Topic11_Reflection'
 import StageIndicator from '../components/StageIndicator'
 
 import LoginScreen from '../components/LoginScreen'
@@ -67,6 +72,13 @@ export default function Week1Page() {
     loadUserData(username)
   }
 
+  const handleLogout = () => {
+    setUser(null)
+    setIsSimulatorActive(false)
+    localStorage.removeItem('visual_learning_user')
+    // We purposefully don't remove progress, so they can resume later if they login with same name
+  }
+
   const handleTopicComplete = (currentId: string) => {
     // Calculate next ID
     const nextId = (parseInt(currentId) + 1).toString()
@@ -96,6 +108,16 @@ export default function Week1Page() {
         return <Topic5_Hallucinations onComplete={() => handleTopicComplete('5')} />
       case '6':
         return <Topic6_WorkdayIntegration onComplete={() => handleTopicComplete('6')} />
+      case '7':
+        return <Topic7_PromptStructure onComplete={() => handleTopicComplete('7')} />
+      case '8':
+        return <Topic8_PromptTechniques onComplete={() => handleTopicComplete('8')} />
+      case '9':
+        return <Topic9_ModelComparison onComplete={() => handleTopicComplete('9')} />
+      case '10':
+        return <Topic10_PersonalSystem onComplete={() => handleTopicComplete('10')} />
+      case '11':
+        return <Topic11_Reflection onComplete={() => handleTopicComplete('11')} />
       default:
         return <div className="flex items-center justify-center h-full text-[var(--foreground-muted)]">Topic {activeTopicId} Loading...</div>
     }
@@ -130,6 +152,7 @@ export default function Week1Page() {
                   activeTopicId={activeTopicId}
                   unlockedTopicIds={unlockedTopicIds}
                   onSelectTopic={setActiveTopicId}
+                  onLogout={handleLogout}
                 />
               </motion.div>
 
