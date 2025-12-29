@@ -697,45 +697,76 @@ function PredictionGame({ onComplete }: { onComplete: () => void }) {
     const currentRound = ROUNDS[round]
 
     return (
+    return (
         <div className="w-full max-w-4xl text-center">
             {/* Header */}
-            <div className="flex justify-between items-center mb-8 px-4">
-                <div className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    Training Step {round + 1}/{ROUNDS.length}
+            <div className="flex justify-between items-center mb-8 px-6 py-3 bg-white/50 backdrop-blur-md rounded-full border border-white/40 shadow-sm mx-auto w-fit gap-12">
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                    Training Step {round + 1} / {ROUNDS.length}
                 </div>
                 <div className="flex gap-2">
                     {ROUNDS.map((_, i) => (
-                        <div key={i} className={`w-3 h-3 rounded-full ${i <= round ? 'bg-[var(--gold)]' : 'bg-gray-200'}`} />
+                        <div
+                            key={i}
+                            className={`
+                                w-2 h-2 rounded-full transition-all duration-500 
+                                ${i === round ? 'w-8 bg-[var(--gold)] shadow-[0_0_10px_rgba(201,162,77,0.4)]' : ''} 
+                                ${i < round ? 'bg-[var(--gold)] opacity-50' : ''}
+                                ${i > round ? 'bg-gray-200' : ''}
+                            `}
+                        />
                     ))}
                 </div>
             </div>
 
-            {/* Context Card */}
+            {/* Context Card - PREMIUM GLASS */}
             <motion.div
                 key={round}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-[2rem] p-10 shadow-2xl border border-gray-100 text-center mb-12 relative overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-12 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-white mb-12 overflow-hidden group"
             >
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[var(--gold)] to-transparent" />
-                <h3 className="text-[var(--gold)] font-bold uppercase tracking-widest text-sm mb-4">Complete the Pattern</h3>
-                <div className="text-3xl md:text-5xl font-serif text-[var(--foreground)] leading-tight">
-                    {currentRound.context} <span className="inline-block border-b-4 border-[var(--gold)] text-[var(--gold)] px-2 animate-pulse">?</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-[var(--gold)]/5 opacity-50" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent opacity-50" />
+
+                <h3 className="relative text-[var(--gold)] font-bold uppercase tracking-[0.3em] text-xs mb-8 flex items-center justify-center gap-3">
+                    <Sparkles size={14} /> Complete the Pattern
+                </h3>
+
+                <div className="relative text-4xl md:text-6xl font-light text-[var(--foreground)] leading-tight">
+                    {currentRound.context.split(/([0-9]+)/).map((part, i) =>
+                        /^[0-9]+$/.test(part) ? <span key={i} className="font-mono font-bold tracking-tighter">{part}</span> : part
+                    )}
+                    <span className="inline-flex items-center justify-center w-16 h-16 ml-4 rounded-xl bg-[var(--gold)]/10 border-2 border-[var(--gold)] text-[var(--gold)] animate-pulse">?</span>
                 </div>
             </motion.div>
 
-            {/* Options */}
+            {/* Options - INTERACTIVE DECK */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {currentRound.options.map((opt, i) => {
                     const isSelected = selectedOption === i
                     const isCorrect = opt.correct
 
-                    let bgClass = "bg-white hover:border-[var(--gold)]"
+                    let bgClass = "bg-white border-2 border-transparent hover:border-[var(--gold)]/30 hover:shadow-xl hover:-translate-y-1"
+                    let textClass = "text-[var(--foreground)]"
+
                     if (selectedOption !== null) {
-                        if (isSelected && isCorrect) bgClass = "bg-green-500 border-green-500 text-white"
-                        else if (isSelected && !isCorrect) bgClass = "bg-red-500 border-red-500 text-white"
-                        else if (!isSelected && isCorrect) bgClass = "bg-green-100 border-green-200" // Show correct answer
-                        else bgClass = "bg-gray-50 opacity-50"
+                        if (isSelected && isCorrect) {
+                            bgClass = "bg-green-500 border-green-600 text-white shadow-[0_10px_30px_rgba(34,197,94,0.3)] scale-105"
+                            textClass = "text-white"
+                        }
+                        else if (isSelected && !isCorrect) {
+                            bgClass = "bg-red-500 border-red-600 text-white shadow-[0_10px_30px_rgba(239,68,68,0.3)] scale-105"
+                            textClass = "text-white"
+                        }
+                        else if (!isSelected && isCorrect) {
+                            bgClass = "bg-green-50 border-green-200 opacity-100" // Show correct answer nicely
+                            textClass = "text-green-700"
+                        }
+                        else {
+                            bgClass = "bg-gray-50 opacity-40 grayscale"
+                            textClass = "text-gray-400"
+                        }
                     }
 
                     return (
@@ -746,11 +777,13 @@ function PredictionGame({ onComplete }: { onComplete: () => void }) {
                             transition={{ delay: i * 0.1 }}
                             onClick={() => handleSelect(i)}
                             disabled={selectedOption !== null}
-                            className={`p-6 rounded-2xl border-2 shadow-lg flex flex-col items-center justify-center gap-2 transition-all duration-300 ${bgClass}`}
+                            className={`p-8 rounded-[1.5rem] shadow-lg flex flex-col items-center justify-center gap-3 transition-all duration-500 ${bgClass}`}
                         >
-                            <span className="text-xl font-bold">{opt.text}</span>
+                            <span className={`text-2xl font-bold ${textClass}`}>{opt.text}</span>
                             {selectedOption !== null && (isSelected || (isCorrect && !isSelected)) && (
-                                <span className="text-xs opacity-90 font-medium">{opt.reason}</span>
+                                <span className={`text-xs font-bold uppercase tracking-wide ${isSelected ? 'text-white/80' : 'text-green-600'}`}>
+                                    {opt.reason}
+                                </span>
                             )}
                         </motion.button>
                     )
