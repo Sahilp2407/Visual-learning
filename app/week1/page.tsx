@@ -10,6 +10,7 @@ import Topic2_TrainingData from '../components/Topic2_TrainingData'
 import Topic3_Tokens from '../components/Topic3_Tokens'
 import Topic4_Memory from '../components/Topic4_Memory'
 import Topic5_Hallucinations from '../components/Topic5_Hallucinations'
+import Topic6_WorkdayIntegration from '../components/Topic6_WorkdayIntegration'
 import StageIndicator from '../components/StageIndicator'
 
 export default function Week1Page() {
@@ -28,7 +29,7 @@ export default function Week1Page() {
     const nextId = (parseInt(currentId) + 1).toString()
 
     // Unlock next topic if valid and not already unlocked
-    if (!unlockedTopicIds.includes(nextId) && nextId <= '5') {
+    if (!unlockedTopicIds.includes(nextId) && nextId <= '6') {
       setUnlockedTopicIds(prev => [...prev, nextId])
     }
 
@@ -50,6 +51,8 @@ export default function Week1Page() {
         return <Topic4_Memory onComplete={() => handleTopicComplete('4')} />
       case '5':
         return <Topic5_Hallucinations onComplete={() => handleTopicComplete('5')} />
+      case '6':
+        return <Topic6_WorkdayIntegration onComplete={() => handleTopicComplete('6')} />
       default:
         return <div className="flex items-center justify-center h-full text-[var(--foreground-muted)]">Topic {activeTopicId} Loading...</div>
     }

@@ -11,6 +11,7 @@ const TOPICS = [
     { id: '3', title: 'Tokens & Context Window', emoji: '🔤' },
     { id: '4', title: 'Why LLMs Feel Smart', emoji: '🧠' },
     { id: '5', title: 'Hallucinations', emoji: '✨' },
+    { id: '6', title: 'Workday Integration', emoji: '💼' },
 ]
 
 interface SimulatorSidebarProps {
