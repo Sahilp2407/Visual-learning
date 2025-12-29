@@ -77,28 +77,58 @@ export default function Topic1_WhatIsLLM({ onComplete, onStageChange }: TopicCan
         return text;
     }
 
-    // Helper to transform custom prompts based on tone
-    const getTonePrefix = (tone: string | null) => {
-        if (!tone || !customPrompt) return '';
+    // Intelligent Response Generator
+    const generateResponse = (tone: string | null, input: string) => {
+        if (!tone || !input) return '';
 
-        const prompt = customPrompt.trim();
+        const lowerInput = input.toLowerCase();
+        const isEmail = lowerInput.includes('email') || lowerInput.includes('write') || lowerInput.includes('draft');
+        const isLeave = lowerInput.includes('leave') || lowerInput.includes('vacation') || lowerInput.includes('off');
+        const isMeeting = lowerInput.includes('meeting') || lowerInput.includes('schedule') || lowerInput.includes('calendar');
+        const isJoke = lowerInput.includes('joke') || lowerInput.includes('funny');
+        const isCode = lowerInput.includes('code') || lowerInput.includes('function') || lowerInput.includes('react');
 
-        switch (tone) {
-            case 'professional':
-                return `Subject: Regarding your recent inquiry\n\nDear Sir/Madam,\n\nI am writing to ${prompt}. I would appreciate your prompt attention to this matter.\n\nThank you for your cooperation.\n\nBest regards`;
-
-            case 'casual':
-                return `Hey there!\n\n${prompt.charAt(0).toUpperCase() + prompt.slice(1)}. Let me know when you can!\n\nThanks!`;
-
-            case 'genz':
-                return `yo! ${prompt} pls? would really appreciate it ngl 🙏\n\nthanks bestie ✨`;
-
-            case 'legal':
-                return `TO WHOM IT MAY CONCERN:\n\nThis correspondence serves as formal notice regarding the following matter: ${prompt}.\n\nYour immediate attention to this matter is required pursuant to applicable regulations.\n\nRespectfully submitted`;
-
-            default:
-                return prompt;
+        // PROFESSIONAL PERSONA
+        if (tone === 'professional') {
+            if (isLeave) return "Subject: Leave Application\n\nDear Manager,\n\nI am writing to formally request leave for personal reasons. I have ensured all my current tasks are up to date and have delegated pending items to the team.\n\nI appeciate your understanding and approval.\n\nBest regards,\n[Your Name]";
+            if (isMeeting) return "Subject: Meeting Request\n\nDear Team,\n\nI would like to propose a brief meeting to align on our quarterly objectives. Please let me know your availability for this week so we can schedule accordingly.\n\nRegards,";
+            if (isCode) return "Certainly. Here is the optimized function you requested, adhering to our clean code standards:\n\nconst calculateMetric = (data) => {\n  return data.reduce((acc, curr) => acc + curr.value, 0);\n};\n\nPlease review before merging.";
+            if (isJoke) return "As an AI, I suggest we focus on productivity, but here is a light-hearted observation: Why do programmers prefer dark mode? Because light attracts bugs.";
+            // Fallback
+            return `Subject: Response to Inquiry\n\nDear Sir/Madam,\n\nI have received your message regarding "${input}". I am currently reviewing the details and will provide a comprehensive response shortly.\n\nThank you for your patience.\n\nBest regards,`;
         }
+
+        // CASUAL PERSONA
+        if (tone === 'casual') {
+            if (isLeave) return "Hey boss! 🌴\n\nJust wanted to ask if I could take some time off? Need to recharge a bit. Let me know if that's cool!\n\nThanks!";
+            if (isMeeting) return "Yo team! 👋\n\nWe should probably sync up soon. When are you guys free for a quick chat? Let's grab coffee and talk.";
+            if (isCode) return "Here's that code snippet you wanted! It's pretty chill:\n\n// quick fix\nconst doThing = () => console.log('Done!');\n\nHope it works!";
+            if (isJoke) return "Why did the React component break up with the DOM?\n\nBecause it had too many re-renders! 😂";
+            // Fallback
+            return `Hey! Got your message about "${input}".\n\nSounds interesting! I'm on it. Give me a sec to figure it out and I'll hit you back.\n\nCheers!`;
+        }
+
+        // GEN-Z PERSONA
+        if (tone === 'genz') {
+            if (isLeave) return "bestie i need a break fr 😩\n\ngonna touch grass for a few days if thats ok? mental health check ✅\n\ntysmily!";
+            if (isMeeting) return "ayo fam, vibe check? 🎧\n\nwe need to sync up real quick. drop a time in the chat providing its not 8am lol.";
+            if (isCode) return "bruh look at this code 💀\n\nconst yeet = () => {\n  throw new Error('vibe match failed');\n}\n\nit works on my machine tho ngl";
+            if (isJoke) return "my code doesn't work: 😭\nmy code works: 💀\n\nwhy is this so real";
+            // Fallback
+            return `re: ${input}\n\nbet. say less. i gotchu. sending positive vibes only ✨`;
+        }
+
+        // LEGAL PERSONA
+        if (tone === 'legal') {
+            if (isLeave) return "FORMAL NOTICE OF ABSENCE\n\nPursuant to Employee Handbook Section 4.2, the undersigned hereby submits a formal request for leave of absence. All contractual obligations regarding task handover shall be adhered to strictly.";
+            if (isMeeting) return "NOTICE OF CONVOCATION\n\nA formal assembly of relevant stakeholders is required to adjudicate on current project milestones. Attendance is mandatory unless prior written exemption is granted.";
+            if (isCode) return "DISCLAIMER: THE FOLLOWING CODE IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND.\n\nfunction legalSafeExecute() {\n  try { execute(); } catch (e) { liability = 0; }\n}";
+            if (isJoke) return "The entity known as 'AI' declines to participate in humor that may be construed as unprofessional or liable for damages.";
+            // Fallback
+            return `ACKNOWLEDGEMENT OF RECEIPT\n\nRe: "${input}"\n\nThis correspondence serves to acknowledge receipt of your query. A thorough review of applicable statutes and internal policies is underway. A formal response shall follow within the statutory period.`;
+        }
+
+        return input;
     }
 
     return (
@@ -484,7 +514,7 @@ export default function Topic1_WhatIsLLM({ onComplete, onStageChange }: TopicCan
                                                         <ScrambleText
                                                             key={`${selectedTone}-${temperature}-${customPrompt}`}
                                                             text={getDistortedText(
-                                                                customPrompt ? getTonePrefix(selectedTone) : "Waiting for input...",
+                                                                customPrompt ? generateResponse(selectedTone, customPrompt) : "Waiting for input...",
                                                                 temperature
                                                             )}
                                                             speed={30}
