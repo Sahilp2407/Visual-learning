@@ -60,7 +60,7 @@ export default function ScrambleText({ text, className = "", speed = 40, scrambl
     }, [text, speed, scrambleSpeed, onComplete])
 
     return (
-        <span className={`${className} font-mono`}>
+        <span className={`${className} font-mono whitespace-pre-wrap block`}>
             {displayText}
         </span>
     )
