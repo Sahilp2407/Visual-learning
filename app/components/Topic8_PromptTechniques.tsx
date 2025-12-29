@@ -63,7 +63,7 @@ function FewShotModule({ onNext }: { onNext: () => void }) {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/50 text-blue-400 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
                     <Layers size={14} /> Technique 1: Few-Shot Prompting
                 </div>
-                <h2 className="text-4xl font-bold mb-4">Monkey See, Monkey Do</h2>
+                <h2 className="text-4xl font-bold mb-4 text-white">Monkey See, Monkey Do</h2>
                 <p className="text-gray-400">Don't just explain. <span className="text-white font-bold">Show examples.</span></p>
             </div>
 
@@ -183,7 +183,7 @@ function ChainOfThoughtModule({ onNext }: { onNext: () => void }) {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/50 text-purple-400 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
                     <BrainCircuit size={14} /> Technique 2: Chain of Thought
                 </div>
-                <h2 className="text-4xl font-bold mb-4">Think Step-by-Step</h2>
+                <h2 className="text-4xl font-bold mb-4 text-white">Think Step-by-Step</h2>
                 <p className="text-gray-400">Force the AI to show its work to avoid <span className="text-white font-bold">stupid math & logic errors.</span></p>
             </div>
 
@@ -293,7 +293,7 @@ function TechniquesSummary({ onComplete }: TopicProps) {
             <div className="w-24 h-24 bg-white text-black rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_50px_rgba(255,255,255,0.3)]">
                 <Zap size={40} fill="currentColor" />
             </div>
-            <h2 className="text-4xl font-bold mb-6">Techniques Mastered</h2>
+            <h2 className="text-4xl font-bold mb-6 text-white">Techniques Mastered</h2>
             <ul className="text-left space-y-4 max-w-md mx-auto mb-10 text-gray-400">
                 <li className="flex items-center gap-3">
                     <Check className="text-green-400" />
