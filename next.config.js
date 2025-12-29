@@ -5,6 +5,7 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true,
   },
+  basePath: '/Visual-learning',
 }
 
 module.exports = nextConfig
