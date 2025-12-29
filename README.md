@@ -1,55 +1,38 @@
-# LLM Simulator - Interactive Learning Tool
+# AI Copilot Mastery - Premium Landing Page
 
-An interactive web-based simulator that demonstrates how Large Language Models (LLMs) work, featuring a beautiful light theme UI with guided walkthroughs and visual demonstrations.
+A premium, single-screen landing page built with Next.js, TypeScript, Tailwind CSS, and GSAP.
 
-## 🌟 Features
+## Getting Started
 
-- **Interactive LLM Visualization**: See how LLMs process text in real-time
-- **Guided Walkthrough**: Step-by-step tutorial for first-time users
-- **Visual Demos**: Multiple demonstration modes including:
-  - Hallucination examples
-  - Comparison demonstrations
-  - Completion screens
-- **Modern UI**: Clean, professional light theme with smooth animations
-- **Responsive Design**: Works seamlessly across different screen sizes
-
-## 🚀 Getting Started
-
-Simply open `index.html` in your web browser to start exploring the LLM simulator.
-
-## 📁 Project Structure
-
-```
-VISUAL-2/
-├── index.html              # Main HTML file
-├── styles.css              # Styling and theme
-├── script.js               # Interactive functionality
-├── letsupgrade-logo.png    # Logo asset
-└── README.md               # Project documentation
+1. Install dependencies:
+```bash
+npm install
 ```
 
-## 🎨 Theme
+2. Run the development server:
+```bash
+npm run dev
+```
 
-The project features a high-brightness layout with:
-- Off-white and soft cream-yellow tones
-- Strong text readability
-- Subtle shadows and borders
-- Orange accent colors for brand consistency
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 💻 Technologies Used
+## Tech Stack
 
-- HTML5
-- CSS3 (Vanilla CSS)
-- JavaScript (ES6+)
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **GSAP** (animations)
+- **Playfair Display** (serif heading font)
+- **Inter** (sans-serif body font)
 
-## 📝 License
+## Design Philosophy
 
-This project is part of the LetsUpgrade learning platform.
+- Premium, minimal, elegant
+- Single-screen hero (100vh)
+- Calm, confident tone
+- Subtle animations
+- Premium typography
+- Whitespace-focused layout
 
-## 🤝 Contributing
 
-Feel free to fork this project and submit pull requests for any improvements.
 
----
-
-Built with ❤️ for interactive learning
