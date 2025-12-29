@@ -84,7 +84,7 @@ export default function Week1Page() {
     const nextId = (parseInt(currentId) + 1).toString()
 
     // Unlock next topic if valid and not already unlocked
-    if (!unlockedTopicIds.includes(nextId) && nextId <= '6') {
+    if (!unlockedTopicIds.includes(nextId) && parseInt(nextId) <= 11) {
       setUnlockedTopicIds(prev => [...prev, nextId])
     }
 
