@@ -5,7 +5,7 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true,
   },
-  basePath: '/Visual-learning',
+  // basePath: '/Visual-learning', // Commented out for Vercel deployment
 }
 
 module.exports = nextConfig
