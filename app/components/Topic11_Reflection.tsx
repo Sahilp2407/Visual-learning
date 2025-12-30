@@ -46,9 +46,9 @@ export default function Topic11_Reflection({ onComplete }: TopicProps) {
     }, [])
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-white text-gray-900 p-6 md:p-12 overflow-y-auto relative">
-            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(circle at center, #ffd700 0%, transparent 70%)' }}
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-6 md:p-12 overflow-y-auto relative transition-colors duration-500">
+            <div className="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none transition-opacity"
+                style={{ backgroundImage: 'radial-gradient(circle at center, var(--gold) 0%, transparent 70%)' }}
             />
 
             <motion.div
@@ -66,16 +66,16 @@ export default function Topic11_Reflection({ onComplete }: TopicProps) {
                     </div>
                 </div>
 
-                <h1 className="text-5xl md:text-6xl font-black mb-4 text-center tracking-tight text-gray-900">Week 1 Complete</h1>
-                <p className="text-xl text-gray-500 text-center max-w-xl mb-12">
+                <h1 className="text-5xl md:text-6xl font-black mb-4 text-center tracking-tight text-[var(--foreground)] transition-colors">Week 1 Complete</h1>
+                <p className="text-xl text-gray-500 dark:text-gray-400 text-center max-w-xl mb-12 transition-colors">
                     You've mastered the fundamentals. From tokens to prompt engineering, you are now operating at a higher level.
                 </p>
 
-                <div className="w-full bg-white border border-gray-100 shadow-xl rounded-2xl p-8 mb-8">
+                <div className="w-full bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 shadow-xl rounded-2xl p-8 mb-8 transition-colors">
                     <div className="flex flex-col md:flex-row gap-8 justify-between items-center text-center">
                         <div>
                             <div className="text-xs font-bold uppercase text-gray-400 mb-1">Modules Cleared</div>
-                            <div className="text-4xl font-black text-gray-900">11/11</div>
+                            <div className="text-4xl font-black text-gray-900 dark:text-gray-100 transition-colors">11/11</div>
                         </div>
                         <div>
                             <div className="text-xs font-bold uppercase text-gray-400 mb-1">New Skills</div>
@@ -101,11 +101,11 @@ export default function Topic11_Reflection({ onComplete }: TopicProps) {
                 <div className="mt-12 flex gap-4">
                     <button
                         onClick={onComplete}
-                        className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
+                        className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
                     >
                         Return to Dashboard
                     </button>
-                    <button className="px-8 py-4 bg-white border border-gray-200 text-gray-900 rounded-full font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm">
+                    <button className="px-8 py-4 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-gray-200 rounded-full font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors flex items-center gap-2 shadow-sm">
                         <Download size={16} /> Certificate
                     </button>
                 </div>
@@ -117,11 +117,11 @@ export default function Topic11_Reflection({ onComplete }: TopicProps) {
 
 function ActionItem({ text }: { text: string }) {
     return (
-        <div className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-100 rounded-xl hover:bg-blue-50 hover:border-blue-100 transition-colors">
-            <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                <CheckCircle size={14} className="text-green-600" />
+        <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-100 dark:hover:border-blue-800 transition-colors">
+            <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0 transition-colors">
+                <CheckCircle size={14} className="text-green-600 dark:text-green-400 transition-colors" />
             </div>
-            <span className="text-sm font-medium text-gray-600">{text}</span>
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors">{text}</span>
         </div>
     )
 }

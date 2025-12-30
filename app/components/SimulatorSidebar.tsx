@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Lock, CheckCircle2, Circle, Sparkles, ChevronDown, BookOpen, Zap } from 'lucide-react'
+import { Lock, CheckCircle2, Circle, Sparkles, ChevronDown, BookOpen, Zap, Play, PlayCircle, FastForward } from 'lucide-react'
 
 // Topic Data Structure
 const TOPICS = [
@@ -33,7 +33,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
     const progressPercent = Math.round((unlockedTopicIds.length / TOPICS.length) * 100)
 
     return (
-        <div className="w-80 h-full bg-gradient-to-br from-white via-gray-50/30 to-white border-r border-gray-200/60 flex flex-col z-20 relative overflow-hidden">
+        <div className="w-80 h-full bg-gradient-to-br from-white via-gray-50/30 to-white dark:from-zinc-900 dark:via-zinc-900 dark:to-black border-r border-gray-200/60 dark:border-zinc-800 flex flex-col z-20 relative overflow-hidden transition-colors">
 
             {/* Animated background orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -44,7 +44,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                         x: [-20, 20, -20],
                     }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-20 -left-20 w-60 h-60 bg-[var(--gold)] rounded-full blur-3xl"
+                    className="absolute -top-20 -left-20 w-60 h-60 bg-[var(--gold)] rounded-full blur-3xl dark:opacity-20"
                 />
                 <motion.div
                     animate={{
@@ -53,7 +53,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                         y: [20, -20, 20],
                     }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute -bottom-20 -right-20 w-60 h-60 bg-blue-400 rounded-full blur-3xl"
+                    className="absolute -bottom-20 -right-20 w-60 h-60 bg-blue-400 rounded-full blur-3xl dark:opacity-20"
                 />
             </div>
 
@@ -76,7 +76,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
 
                     {/* Title */}
                     <div>
-                        <h1 className="text-4xl font-bold text-[var(--foreground)] tracking-tight leading-tight">
+                        <h1 className="text-4xl font-bold text-[var(--foreground)] tracking-tight leading-tight transition-colors">
                             LLM
                         </h1>
                         <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold)] via-amber-500 to-[var(--gold)] bg-[length:200%_100%] animate-gradient-x">
@@ -90,7 +90,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
             <div className="px-6 mb-3 relative z-10">
                 <motion.button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="w-full group relative rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 hover:border-[var(--gold)]/40 hover:shadow-lg"
+                    className="w-full group relative rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-zinc-900 dark:to-zinc-800 border-2 border-gray-200 dark:border-zinc-700 hover:border-[var(--gold)]/40 hover:shadow-lg"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                 >
@@ -108,7 +108,7 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                         {/* Module Info */}
                         <div className="flex-1 text-left">
                             <div className="text-[9px] font-bold text-[var(--gold)] uppercase tracking-widest mb-1">Module 1</div>
-                            <div className="text-sm font-bold text-[var(--foreground)] leading-tight">
+                            <div className="text-sm font-bold text-[var(--foreground)] leading-tight transition-colors">
                                 Introduction to LLMs
                             </div>
                         </div>
@@ -119,8 +119,8 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                             className="flex-shrink-0"
                         >
-                            <div className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-[var(--gold)]/10 flex items-center justify-center transition-colors">
-                                <ChevronDown size={16} className="text-gray-600 group-hover:text-[var(--gold)] transition-colors" />
+                            <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-zinc-800 group-hover:bg-[var(--gold)]/10 flex items-center justify-center transition-colors">
+                                <ChevronDown size={16} className="text-gray-600 dark:text-gray-400 group-hover:text-[var(--gold)] transition-colors" />
                             </div>
                         </motion.div>
                     </div>
@@ -152,34 +152,70 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                                     onClick={() => !isLocked && onSelectTopic(topic.id)}
                                     className={`group relative rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden
                                         ${isActive
-                                            ? 'bg-gradient-to-br from-[var(--gold)]/20 via-amber-50 to-[var(--gold)]/10 shadow-lg border-2 border-[var(--gold)]/50 scale-[1.02]'
-                                            : 'bg-white/80 backdrop-blur-sm border-2 border-gray-100 hover:border-[var(--gold)]/30 hover:shadow-md hover:scale-[1.01]'
+                                            ? 'bg-gradient-to-br from-[var(--gold)]/20 via-amber-50 to-[var(--gold)]/10 dark:from-[var(--gold)]/30 dark:via-amber-900/40 dark:to-[var(--gold)]/20 shadow-lg border-2 border-[var(--gold)]/50 scale-[1.02]'
+                                            : 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border-2 border-gray-100 dark:border-zinc-800 hover:border-[var(--gold)]/30 hover:shadow-md hover:scale-[1.01]'
                                         }
                                         ${isLocked ? 'opacity-40 cursor-not-allowed hover:scale-100' : 'opacity-100'}
                                     `}
                                 >
-                                    {/* Shimmer effect */}
+                                    {/* Shimmer effect for Active */}
                                     {isActive && (
-                                        <motion.div
-                                            animate={{ x: ['-100%', '100%'] }}
-                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
-                                        />
+                                        <>
+                                            <motion.div
+                                                animate={{ x: ['-100%', '100%'] }}
+                                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear", repeatDelay: 0.5 }}
+                                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent pointer-events-none z-0"
+                                            />
+                                            {/* Glowing Pulse Border */}
+                                            <motion.div
+                                                animate={{ opacity: [0.5, 1, 0.5] }}
+                                                transition={{ duration: 2, repeat: Infinity }}
+                                                className="absolute inset-0 border-2 border-[var(--gold)]/50 rounded-2xl pointer-events-none z-0"
+                                            />
+                                        </>
                                     )}
 
-                                    <div className="relative p-4 flex items-center gap-4">
-                                        {/* Emoji + Status */}
+                                    <div className="relative p-4 flex items-center gap-4 z-10">
+                                        {/* Emoji + Status or Play Button */}
                                         <div className="flex-shrink-0 relative">
-                                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-all
-                                                ${isLocked ? 'bg-gray-100 grayscale' : isActive ? 'bg-gradient-to-br from-[var(--gold)] to-amber-500 shadow-lg scale-110' : 'bg-gray-50 group-hover:bg-gray-100'}
+                                            {isActive && (
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <motion.div
+                                                        animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+                                                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                                                        className="w-full h-full rounded-xl bg-[var(--gold)]/30 absolute"
+                                                    />
+                                                    <motion.div
+                                                        animate={{ scale: [1, 1.8], opacity: [0.3, 0] }}
+                                                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.2 }}
+                                                        className="w-full h-full rounded-xl bg-[var(--gold)]/20 absolute"
+                                                    />
+                                                </div>
+                                            )}
+
+                                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-all relative overflow-hidden z-10
+                                                ${isLocked
+                                                    ? 'bg-gray-100 dark:bg-zinc-800 grayscale'
+                                                    : isActive
+                                                        ? 'bg-gradient-to-br from-[var(--gold)] to-amber-600 shadow-lg scale-110 ring-2 ring-[var(--gold)]/30'
+                                                        : 'bg-gray-50 dark:bg-zinc-800 group-hover:bg-gray-100 dark:group-hover:bg-zinc-700'}
                                             `}>
-                                                {isLocked ? (
-                                                    <Lock size={18} className="text-gray-400" />
+                                                {isActive ? (
+                                                    <motion.div
+                                                        whileTap={{ scale: 0.9 }}
+                                                        animate={{ scale: [1, 1.1, 1] }}
+                                                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                                        className="text-white flex items-center justify-center w-full h-full bg-black/10 backdrop-blur-[1px]"
+                                                    >
+                                                        <Play fill="currentColor" size={20} className="ml-1" />
+                                                    </motion.div>
+                                                ) : isLocked ? (
+                                                    <Lock size={18} className="text-gray-400 dark:text-zinc-600" />
                                                 ) : isCompleted ? (
-                                                    <div className="relative">
-                                                        <span className="text-xl">{topic.emoji}</span>
-                                                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                                                            <CheckCircle2 size={10} className="text-white" />
+                                                    <div className="relative w-full h-full flex items-center justify-center">
+                                                        <span className="text-xl opacity-50">{topic.emoji}</span>
+                                                        <div className="absolute inset-0 flex items-center justify-center bg-green-500/10">
+                                                            <CheckCircle2 size={18} className="text-green-600 dark:text-green-500" />
                                                         </div>
                                                     </div>
                                                 ) : (
@@ -188,23 +224,58 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
                                             </div>
                                         </div>
 
-                                        {/* Topic Title */}
-                                        <div className="flex-1 min-w-0">
-                                            <span className={`text-sm font-bold transition-colors block truncate
-                                                ${isActive ? 'text-[var(--foreground)]' : 'text-gray-700'}
-                                                ${!isLocked && 'group-hover:text-[var(--foreground)]'}
+                                        {/* Topic Title & Meta */}
+                                        <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                            <div className="flex justify-between items-center mb-0.5">
+                                                <div className="flex items-center gap-1.5">
+                                                    {isActive && (
+                                                        <div className="flex items-end gap-[2px] h-3 pb-[1px]">
+                                                            <motion.div animate={{ height: [3, 8, 3] }} transition={{ duration: 0.6, repeat: Infinity }} className="w-[2px] bg-[var(--gold)] rounded-full" />
+                                                            <motion.div animate={{ height: [6, 10, 5] }} transition={{ duration: 0.5, repeat: Infinity, delay: 0.1 }} className="w-[2px] bg-[var(--gold)] rounded-full" />
+                                                            <motion.div animate={{ height: [4, 9, 2] }} transition={{ duration: 0.7, repeat: Infinity, delay: 0.2 }} className="w-[2px] bg-[var(--gold)] rounded-full" />
+                                                        </div>
+                                                    )}
+                                                    <span className={`text-[10px] font-bold uppercase tracking-wider
+                                                        ${isActive ? 'text-[var(--gold-dark)] dark:text-[var(--gold)]' : 'text-gray-400'}
+                                                    `}>
+                                                        {isActive ? 'NOW PLAYING' : isCompleted ? 'COMPLETED' : `LESSON ${index + 1}`}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <span className={`text-sm font-bold transition-colors block truncate leading-tight
+                                                ${isActive ? 'text-gray-900 dark:text-white text-base' : 'text-gray-700 dark:text-gray-400'}
+                                                ${!isLocked && !isActive && 'group-hover:text-[var(--foreground)]'}
                                             `}>
                                                 {topic.title}
                                             </span>
+
+                                            {/* Progress Bar for Active */}
+                                            {isActive && (
+                                                <div className="w-full h-1 bg-gray-200 dark:bg-black/30 rounded-full mt-2 overflow-hidden relative">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: "35%" }}
+                                                        className="h-full bg-[var(--gold)] absolute left-0 top-0"
+                                                    />
+                                                    {/* Buffer animation */}
+                                                    <motion.div
+                                                        animate={{ x: [-100, 100] }}
+                                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                        className="h-full w-20 bg-white/30 blur-sm absolute top-0 left-0"
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
 
-                                        {/* Active pulse */}
+                                        {/* Active Action Icon */}
                                         {isActive && (
                                             <motion.div
-                                                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.5, 1] }}
-                                                transition={{ duration: 2, repeat: Infinity }}
-                                                className="absolute right-4 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[var(--gold)] shadow-[0_0_10px_rgba(201,162,77,0.8)]"
-                                            />
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1 }}
+                                                className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 shadow-md flex items-center justify-center text-[var(--gold)]"
+                                            >
+                                                <FastForward size={14} fill="currentColor" />
+                                            </motion.div>
                                         )}
                                     </div>
                                 </motion.div>
@@ -217,10 +288,10 @@ export default function SimulatorSidebar({ activeTopicId, unlockedTopicIds, onSe
 
 
             {/* Logout Button (Bottom) */}
-            <div className="p-6 relative z-10 border-t border-gray-200/60">
+            <div className="p-6 relative z-10 border-t border-gray-200/60 dark:border-zinc-800">
                 <button
                     onClick={onLogout}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold text-gray-500 hover:text-red-500 hover:bg-red-50 transition-all group"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all group"
                 >
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0">Logout</span>
                     <span className="group-hover:opacity-0 transition-opacity absolute">End Session</span>

@@ -22,7 +22,7 @@ import LoginScreen from '../components/LoginScreen'
 import { useEffect } from 'react'
 
 export default function Week1Page() {
-  const [user, setUser] = useState<string | null>(null)
+  const [user, setUser] = useState<string | null>('Student')
   const [isSimulatorActive, setIsSimulatorActive] = useState(false)
   const [complete, setComplete] = useState(false)
 
@@ -123,10 +123,8 @@ export default function Week1Page() {
     }
   }
 
-  // If not logged in, show Login Screen
-  if (!user) {
-    return <LoginScreen onLogin={handleLogin} />
-  }
+  // Login check removed as per user request to bypass login
+  // if (!user) return <LoginScreen onLogin={handleLogin} />
 
   return (
     <EntryTransition onComplete={() => setIsSimulatorActive(true)}>
@@ -164,7 +162,7 @@ export default function Week1Page() {
                 className="flex-1 relative z-10 flex flex-col"
               >
                 {/* Header Chrome */}
-                <div className="flex justify-between items-center px-8 py-6 border-b border-gray-200">
+                <div className="flex justify-between items-center px-8 py-6 border-b border-gray-200 dark:border-zinc-800 transition-colors">
                   <div className="text-xs uppercase tracking-wider text-gray-400 font-medium">System v2.0 // Active</div>
 
                   {/* Stage Indicator */}
@@ -207,7 +205,7 @@ export default function Week1Page() {
                         setComplete(false)
                         setActiveTopicId((parseInt(activeTopicId) + 1).toString())
                       }}
-                      className="px-8 py-3 bg-[var(--foreground)] text-white rounded-full hover:bg-[var(--charcoal)] transition-all shadow-lg"
+                      className="px-8 py-3 bg-[var(--foreground)] text-white dark:text-black rounded-full hover:bg-[var(--charcoal)] transition-all shadow-lg"
                     >
                       Next Topic →
                     </button>

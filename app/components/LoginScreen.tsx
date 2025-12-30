@@ -79,7 +79,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="w-full py-4 bg-[var(--foreground)] text-white rounded-xl font-bold uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 group"
+                        className="w-full py-4 bg-[var(--foreground)] text-white dark:text-black rounded-xl font-bold uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 group"
                     >
                         Start Learning <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </motion.button>

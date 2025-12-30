@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Providers } from './components/Providers'
+import { ThemeToggle } from './components/ThemeToggle'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,8 +22,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body>
+        <Providers>
+          {children}
+          <ThemeToggle />
+        </Providers>
+      </body>
     </html>
   )
 }

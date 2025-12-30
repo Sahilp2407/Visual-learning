@@ -16,22 +16,22 @@ export default function StageIndicator({ currentStage }: StageIndicatorProps) {
     ]
 
     return (
-        <div className="flex items-center gap-6 bg-white px-6 py-3 rounded-2xl border-2 border-gray-200 shadow-sm">
+        <div className="flex items-center gap-6 bg-white dark:bg-zinc-900 px-6 py-3 rounded-2xl border-2 border-gray-200 dark:border-zinc-800 shadow-sm transition-colors">
             {stages.map((s, i) => (
                 <div key={s.id} className="relative flex items-center gap-3">
                     <div
                         className={`flex items-center gap-3 text-sm font-bold tracking-wide uppercase transition-all duration-500
-                        ${currentStage === s.id ? 'text-[var(--foreground)]' : 'text-gray-400'}`}
+                        ${currentStage === s.id ? 'text-[var(--foreground)]' : 'text-gray-400 dark:text-gray-500'}`}
                     >
                         <div className={`p-2 rounded-xl transition-all duration-300 ${currentStage === s.id
-                                ? 'bg-gradient-to-br from-[var(--gold)] to-amber-500 shadow-lg'
-                                : 'bg-gray-100'
+                            ? 'bg-gradient-to-br from-[var(--gold)] to-amber-500 shadow-lg'
+                            : 'bg-gray-100 dark:bg-zinc-800'
                             }`}>
-                            <s.icon size={16} className={currentStage === s.id ? 'text-white' : 'text-gray-400'} strokeWidth={2.5} />
+                            <s.icon size={16} className={currentStage === s.id ? 'text-white' : 'text-gray-400 dark:text-gray-500'} strokeWidth={2.5} />
                         </div>
                         <span>{s.label}</span>
                     </div>
-                    {i < 2 && <div className="w-px h-6 bg-gray-200 ml-4" />}
+                    {i < 2 && <div className="w-px h-6 bg-gray-200 dark:bg-zinc-800 ml-4" />}
 
                     {currentStage === s.id && (
                         <motion.div

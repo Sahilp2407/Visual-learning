@@ -27,8 +27,8 @@ export default function Topic7_PromptStructure({ onComplete }: TopicProps) {
     const [stage, setStage] = useState<'BAD_PROMPT' | 'BUILDER' | 'COMPARISON'>('BAD_PROMPT')
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-[#f8f9fa] p-6 md:p-8 overflow-y-auto relative">
-            <div className="absolute inset-0 z-0 opacity-5 pointer-events-none">
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[var(--background)] p-6 md:p-8 overflow-y-auto relative transition-colors duration-500">
+            <div className="absolute inset-0 z-0 opacity-5 dark:opacity-10 pointer-events-none transition-opacity">
                 <div className="absolute top-20 left-20 w-64 h-64 bg-blue-400 rounded-full blur-[100px]" />
                 <div className="absolute bottom-20 right-20 w-96 h-96 bg-[var(--gold)] rounded-full blur-[100px]" />
             </div>
@@ -63,20 +63,20 @@ function BadPromptStage({ onNext }: { onNext: () => void }) {
             className="max-w-2xl w-full flex flex-col items-center z-10"
         >
             <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-xs font-bold uppercase tracking-wider mb-4 transition-colors">
                     <AlertTriangle size={14} /> The Trap
                 </div>
-                <h2 className="text-4xl font-black text-gray-900 mb-4">
+                <h2 className="text-4xl font-black text-[var(--foreground)] mb-4 transition-colors">
                     "Garbage In, Garbage Out"
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-gray-600 dark:text-gray-400 transition-colors">
                     Most people treat LLMs like Google Search.<br />This is why they get mediocre results.
                 </p>
             </div>
 
             {/* THE LAZY PROMPT */}
-            <div className="w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-8">
-                <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3">
+            <div className="w-full bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-gray-200 dark:border-zinc-800 overflow-hidden mb-8 transition-colors">
+                <div className="bg-gray-50 dark:bg-zinc-800/50 px-6 py-4 border-b border-gray-200 dark:border-zinc-800 flex items-center gap-3 transition-colors">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
                     <div className="w-3 h-3 rounded-full bg-amber-400" />
                     <div className="w-3 h-3 rounded-full bg-green-400" />
@@ -84,8 +84,8 @@ function BadPromptStage({ onNext }: { onNext: () => void }) {
                 </div>
                 <div className="p-8">
                     <div className="flex items-center gap-4 mb-8">
-                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-500">U</div>
-                        <div className="bg-gray-100 px-6 py-3 rounded-2xl text-lg font-medium text-gray-800 border border-gray-200">
+                        <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-zinc-800 flex items-center justify-center font-bold text-gray-500 dark:text-gray-400 transition-colors">U</div>
+                        <div className="bg-gray-100 dark:bg-zinc-800 px-6 py-3 rounded-2xl text-lg font-medium text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-zinc-700 transition-colors">
                             "Write an email about the meeting."
                         </div>
                     </div>
@@ -123,7 +123,7 @@ function BadPromptStage({ onNext }: { onNext: () => void }) {
                     <div className="px-8 pb-8 flex justify-center">
                         <button
                             onClick={handleRun}
-                            className="flex items-center gap-2 px-8 py-3 bg-gray-900 text-white rounded-full font-bold hover:scale-105 transition-transform"
+                            className="flex items-center gap-2 px-8 py-3 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold hover:scale-105 transition-transform"
                         >
                             <Play size={16} fill="currentColor" /> Run Prompt
                         </button>
@@ -135,7 +135,7 @@ function BadPromptStage({ onNext }: { onNext: () => void }) {
                 <motion.button
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                     onClick={onNext}
-                    className="flex items-center gap-2 px-8 py-4 bg-[var(--foreground)] text-white rounded-full font-bold shadow-xl hover:bg-black transition-colors"
+                    className="flex items-center gap-2 px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold shadow-xl hover:scale-105 transition-all"
                 >
                     Fix This Prompt <Wand2 size={18} />
                 </motion.button>
@@ -173,8 +173,8 @@ function PromptBuilderStage({ onNext }: { onNext: () => void }) {
             {/* LEFT: THE TOOLKIT */}
             <div className="w-full md:w-1/3 space-y-4">
                 <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">The Formula</h2>
-                    <p className="text-sm text-gray-500">Click to assemble the perfect prompt.</p>
+                    <h2 className="text-2xl font-bold text-[var(--foreground)] transition-colors">The Formula</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 transition-colors">Click to assemble the perfect prompt.</p>
                 </div>
 
                 {BLOCKS.map((block) => (
@@ -185,13 +185,13 @@ function PromptBuilderStage({ onNext }: { onNext: () => void }) {
                         whileTap={{ scale: 0.98 }}
                         className={`w-full p-4 rounded-xl border-2 text-left transition-all relative overflow-hidden group
                             ${components[block.id as keyof typeof components]
-                                ? 'border-gray-900 bg-gray-900 text-white shadow-lg'
-                                : 'border-gray-200 bg-white hover:border-gray-300 text-gray-600'}
+                                ? 'border-gray-900 dark:border-white bg-gray-900 dark:bg-white text-white dark:text-black shadow-lg'
+                                : 'border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-gray-300 dark:hover:border-zinc-700 text-gray-600 dark:text-gray-300'}
                         `}
                     >
                         <div className="flex items-center gap-3 relative z-10">
-                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${components[block.id as keyof typeof components] ? 'bg-white/20' : 'bg-gray-100'} transition-colors`}>
-                                <block.icon size={20} className={components[block.id as keyof typeof components] ? "text-white" : "text-gray-500"} />
+                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${components[block.id as keyof typeof components] ? 'bg-white/20 dark:bg-black/10' : 'bg-gray-100 dark:bg-zinc-800'} transition-colors`}>
+                                <block.icon size={20} className={components[block.id as keyof typeof components] ? "text-white dark:text-black" : "text-gray-500 dark:text-gray-400"} />
                             </div>
                             <div>
                                 <div className="font-bold text-sm tracking-wide uppercase">{block.label}</div>
@@ -207,14 +207,14 @@ function PromptBuilderStage({ onNext }: { onNext: () => void }) {
 
             {/* RIGHT: THE CANVAS */}
             <div className="flex-1 h-full flex flex-col">
-                <div className="flex-1 bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 relative overflow-hidden flex flex-col">
+                <div className="flex-1 bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-zinc-800 p-8 relative overflow-hidden flex flex-col transition-colors">
                     <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-                        <Terminal size={120} />
+                        <Terminal size={120} className="text-[var(--foreground)]" />
                     </div>
 
                     <div className="mb-8">
                         <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Constructed Prompt</div>
-                        <div className="min-h-[160px] p-6 bg-gray-50 rounded-2xl border border-gray-200 text-lg leading-relaxed text-gray-700 font-medium relative">
+                        <div className="min-h-[160px] p-6 bg-gray-50 dark:bg-zinc-800 rounded-2xl border border-gray-200 dark:border-zinc-700 text-lg leading-relaxed text-gray-700 dark:text-gray-300 font-medium relative transition-colors">
                             {Object.values(components).every(v => !v) && (
                                 <span className="text-gray-400 italic">Select blocks from the left to build your prompt...</span>
                             )}
@@ -257,7 +257,7 @@ function PromptBuilderStage({ onNext }: { onNext: () => void }) {
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="mt-4 h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                        <div className="mt-4 h-2 w-full bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden transition-colors">
                             <motion.div
                                 className="h-full bg-gradient-to-r from-red-400 via-amber-400 to-green-500"
                                 animate={{ width: `${Object.values(components).filter(Boolean).length * 25}%` }}
@@ -280,40 +280,40 @@ function ComparisonStage({ onComplete }: { onComplete: () => void }) {
             className="max-w-4xl w-full flex flex-col items-center pb-12"
         >
             <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-full text-xs font-bold uppercase tracking-wider mb-4 transition-colors">
                     <CheckCircle2 size={14} /> The Result
                 </div>
-                <h2 className="text-4xl font-black text-gray-900 mb-4">
+                <h2 className="text-4xl font-black text-[var(--foreground)] mb-4 transition-colors">
                     Structure = Success
                 </h2>
-                <p className="text-lg text-gray-600 max-w-2xl">
+                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl transition-colors">
                     By adding structure, you moved from a generic non-answer to a usable, professional draft.
                 </p>
             </div>
 
-            <div className="w-full bg-white rounded-2xl shadow-2xl border border-[var(--gold)]/30 overflow-hidden relative">
+            <div className="w-full bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-[var(--gold)]/30 overflow-hidden relative transition-colors">
                 <div className="bg-[var(--gold)]/10 px-6 py-4 border-b border-[var(--gold)]/20 flex justify-between items-center">
-                    <span className="font-bold text-[var(--foreground)] flex items-center gap-2">
+                    <span className="font-bold text-[var(--foreground)] flex items-center gap-2 transition-colors">
                         <Sparkles size={16} className="text-[var(--gold)]" /> AI Generated Response
                     </span>
                     <span className="text-xs uppercase tracking-widest font-bold text-[var(--gold)]">High Confidence</span>
                 </div>
 
                 <div className="p-8 space-y-6">
-                    <div className="p-6 bg-gray-50 rounded-xl border-l-4 border-indigo-500">
+                    <div className="p-6 bg-gray-50 dark:bg-zinc-800 rounded-xl border-l-4 border-indigo-500 transition-colors">
                         <div className="text-xs font-bold uppercase text-indigo-500 mb-2">Option 1: Empathetic & Direct</div>
-                        <h4 className="font-bold text-gray-900 mb-2">Subject: Update on Project Timeline - Solution Proposed</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <h4 className="font-bold text-gray-900 dark:text-gray-200 mb-2 transition-colors">Subject: Update on Project Timeline - Solution Proposed</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
                             Hi [Client Name],<br /><br />
                             I'm writing to personally update you on the current status of our launch. We've identified a minor bug in the final QA phase. <br /><br />
                             To ensure the stability you expect, we're extending the timeline by 24 hours. We are prioritizing quality over speed to prevent any issues post-launch.
                         </p>
                     </div>
 
-                    <div className="p-6 bg-gray-50 rounded-xl border-l-4 border-teal-500">
+                    <div className="p-6 bg-gray-50 dark:bg-zinc-800 rounded-xl border-l-4 border-teal-500 transition-colors">
                         <div className="text-xs font-bold uppercase text-teal-500 mb-2">Option 2: Professional & Brief</div>
-                        <h4 className="font-bold text-gray-900 mb-2">Subject: Launch Delay - Mitigation Plan</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <h4 className="font-bold text-gray-900 dark:text-gray-200 mb-2 transition-colors">Subject: Launch Delay - Mitigation Plan</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
                             Team,<br /><br />
                             We have flagged a critical item during testing. We are shifting the deployment to Tuesday morning to accommodate a fix.<br /><br />
                             This ensures zero downtime for your users. Appreciate your patience.
@@ -324,7 +324,7 @@ function ComparisonStage({ onComplete }: { onComplete: () => void }) {
 
             <button
                 onClick={onComplete}
-                className="mt-12 px-10 py-4 bg-[var(--foreground)] text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl flex items-center gap-2"
+                className="mt-12 px-10 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl flex items-center gap-2"
             >
                 Complete Lesson <ArrowRight size={16} />
             </button>

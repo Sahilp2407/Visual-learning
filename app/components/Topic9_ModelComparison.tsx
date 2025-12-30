@@ -23,8 +23,8 @@ export default function Topic9_ModelComparison({ onComplete }: TopicProps) {
     const [subModule, setSubModule] = useState<'ROSTER' | 'ARENA' | 'DONE'>('ROSTER')
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50 text-gray-900 p-6 md:p-12 overflow-y-auto relative">
-            <div className="absolute inset-0 z-0 opacity-40 pointer-events-none"
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-6 md:p-12 overflow-y-auto relative transition-colors duration-500">
+            <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20 pointer-events-none transition-opacity"
                 style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
             />
 
@@ -47,7 +47,7 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
             name: 'GPT-4o',
             company: 'OpenAI',
             color: 'from-green-500 to-emerald-600',
-            bg: 'bg-green-50 border-green-200',
+            bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
             icon: Zap,
             stats: { reasoning: 95, creative: 90, speed: 95, context: 80 },
             bestFor: "General Purpose, Reasoning, Speed"
@@ -57,7 +57,7 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
             name: 'Claude 3.5 Sonnet',
             company: 'Anthropic',
             color: 'from-orange-500 to-red-500',
-            bg: 'bg-orange-50 border-orange-200',
+            bg: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
             icon: BookOpen,
             stats: { reasoning: 98, creative: 95, speed: 90, context: 100 },
             bestFor: "Coding, Writing, Long Docs"
@@ -67,7 +67,7 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
             name: 'Gemini 1.5 Pro',
             company: 'Google',
             color: 'from-blue-500 to-purple-600',
-            bg: 'bg-blue-50 border-blue-200',
+            bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
             icon: Search,
             stats: { reasoning: 92, creative: 85, speed: 90, context: 99 },
             bestFor: "Multimodal (Video/Audio), Google Ecosystem"
@@ -80,11 +80,11 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
             className="max-w-6xl w-full"
         >
             <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-bold uppercase tracking-widest mb-4 transition-colors">
                     <Cpu size={14} /> Knowledge Base
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-900">Know Your Models</h2>
-                <p className="text-gray-500">One size does <span className="text-red-500 font-bold underline decoration-4">NOT</span> fit all.</p>
+                <h2 className="text-4xl md:text-5xl font-black mb-4 text-[var(--foreground)] transition-colors">Know Your Models</h2>
+                <p className="text-gray-500 dark:text-gray-400 transition-colors">One size does <span className="text-red-500 font-bold underline decoration-4">NOT</span> fit all.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -95,7 +95,7 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
                         whileHover={{ y: -10, scale: 1.02 }}
-                        className={`border rounded-2xl p-6 relative overflow-hidden group shadow-lg hover:shadow-2xl transition-all bg-white`}
+                        className={`border rounded-2xl p-6 relative overflow-hidden group shadow-lg hover:shadow-2xl transition-all bg-white dark:bg-zinc-900 dark:border-zinc-800`}
                     >
                         {/* Gradient Glow */}
                         <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${model.color} opacity-10 blur-[50px] rounded-full group-hover:opacity-20 transition-opacity`} />
@@ -104,8 +104,8 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
                             <model.icon size={24} className="text-white" />
                         </div>
 
-                        <h3 className="text-2xl font-bold mb-1 text-gray-900">{model.name}</h3>
-                        <div className="text-xs font-mono text-gray-500 mb-6">{model.company}</div>
+                        <h3 className="text-2xl font-bold mb-1 text-gray-900 dark:text-gray-100 transition-colors">{model.name}</h3>
+                        <div className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-6 transition-colors">{model.company}</div>
 
                         <div className="space-y-3 mb-6">
                             <StatBar label="Reasoning" value={model.stats.reasoning} color={model.color} />
@@ -113,9 +113,9 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
                             <StatBar label="Context" value={model.stats.context} color={model.color} />
                         </div>
 
-                        <div className="pt-4 border-t border-gray-100">
+                        <div className="pt-4 border-t border-gray-100 dark:border-zinc-800 transition-colors">
                             <div className="text-xs font-bold uppercase text-gray-400 mb-2">Best For</div>
-                            <p className="text-sm font-medium text-gray-700">{model.bestFor}</p>
+                            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">{model.bestFor}</p>
                         </div>
                     </motion.div>
                 ))}
@@ -124,7 +124,7 @@ function ModelRoster({ onNext }: { onNext: () => void }) {
             <div className="mt-12 flex justify-center">
                 <button
                     onClick={onNext}
-                    className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
+                    className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
                 >
                     Enter Battle Arena <ArrowRight className="inline ml-2" size={16} />
                 </button>
@@ -137,7 +137,7 @@ function StatBar({ label, value, color }: { label: string, value: number, color:
     return (
         <div className="flex items-center gap-3">
             <div className="w-20 text-xs font-bold text-gray-400 text-right">{label}</div>
-            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div className="flex-1 h-1.5 bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden transition-colors">
                 <motion.div
                     initial={{ width: 0 }} animate={{ width: `${value}%` }}
                     transition={{ duration: 1, delay: 0.5 }}
@@ -174,8 +174,8 @@ function BattleArena({ onNext }: { onNext: () => void }) {
             className="max-w-4xl w-full"
         >
             <div className="text-center mb-10">
-                <h2 className="text-4xl font-black mb-2 text-gray-900">The right tool for the job</h2>
-                <p className="text-gray-500">Select a task to see the recommended champion.</p>
+                <h2 className="text-4xl font-black mb-2 text-[var(--foreground)] transition-colors">The right tool for the job</h2>
+                <p className="text-gray-500 dark:text-gray-400 transition-colors">Select a task to see the recommended champion.</p>
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -185,8 +185,8 @@ function BattleArena({ onNext }: { onNext: () => void }) {
                         onClick={() => setSelectedTask(task.id)}
                         className={`flex items-center gap-2 px-6 py-4 rounded-xl border-2 font-bold transition-all
                             ${selectedTask === task.id
-                                ? 'bg-gray-900 text-white border-gray-900 scale-105 shadow-lg'
-                                : 'bg-white border-gray-200 text-gray-500 hover:border-gray-400 hover:bg-gray-50'}
+                                ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white scale-105 shadow-lg'
+                                : 'bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 text-gray-500 dark:text-gray-400 hover:border-gray-400 dark:hover:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800'}
                         `}
                     >
                         <task.icon size={18} /> {task.label}
@@ -202,20 +202,20 @@ function BattleArena({ onNext }: { onNext: () => void }) {
                             initial={{ opacity: 0, y: 20, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
-                            className={`rounded-3xl p-8 md:p-12 text-center shadow-xl border ${RESULTS[selectedTask].bgColor} bg-white relative overflow-hidden`}
+                            className={`rounded-3xl p-8 md:p-12 text-center shadow-xl border ${RESULTS[selectedTask].bgColor} bg-white dark:bg-zinc-900 relative overflow-hidden transition-colors`}
                         >
                             <div className={`absolute top-0 left-0 w-full h-1 bg-current opacity-20`} />
 
                             <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Recommended Model</div>
-                            <h3 className={`text-5xl font-black mb-6 ${RESULTS[selectedTask].color}`}>
+                            <h3 className={`text-5xl font-black mb-6 ${RESULTS[selectedTask].color} dark:brightness-125 transition-colors`}>
                                 {RESULTS[selectedTask].winner}
                             </h3>
-                            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-colors">
                                 {RESULTS[selectedTask].reason}
                             </p>
                         </motion.div>
                     ) : (
-                        <div className="flex items-center justify-center h-full text-gray-400 font-mono text-sm border-2 border-dashed border-gray-200 rounded-3xl bg-gray-50">
+                        <div className="flex items-center justify-center h-full text-gray-400 font-mono text-sm border-2 border-dashed border-gray-200 dark:border-zinc-800 rounded-3xl bg-gray-50 dark:bg-zinc-800/50 transition-colors">
                             [waiting for task selection...]
                         </div>
                     )}
@@ -226,7 +226,7 @@ function BattleArena({ onNext }: { onNext: () => void }) {
                 <div className="mt-12 flex justify-center">
                     <button
                         onClick={onNext}
-                        className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
+                        className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
                     >
                         Next Lesson <ArrowRight className="inline ml-2" size={16} />
                     </button>
@@ -242,17 +242,17 @@ function ModelSummary({ onComplete }: TopicProps) {
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
             className="text-center max-w-2xl"
         >
-            <div className="w-24 h-24 bg-gray-900 text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
+            <div className="w-24 h-24 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl transition-colors">
                 <Cpu size={40} />
             </div>
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">Pro Tip: Don't be loyal.</h2>
-            <p className="text-xl text-gray-500 mb-10">
+            <h2 className="text-4xl font-bold mb-6 text-[var(--foreground)] transition-colors">Pro Tip: Don't be loyal.</h2>
+            <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 transition-colors">
                 The AI landsape changes weekly. Use the best model for the specific task at hand. <br />
-                <span className="text-gray-900 font-bold">Flexibility is your superpower.</span>
+                <span className="text-gray-900 dark:text-white font-bold transition-colors">Flexibility is your superpower.</span>
             </p>
             <button
                 onClick={onComplete}
-                className="px-10 py-4 bg-gray-900 text-white rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
+                className="px-10 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-xl"
             >
                 Complete Module 1.5 <ArrowRight className="inline ml-2" size={16} />
             </button>

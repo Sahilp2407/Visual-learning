@@ -27,6 +27,31 @@
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+.dark {
+  /* Dark Premium Theme */
+  --background: #09090b;
+  --surface: #18181b;
+  --foreground: #fafafa;
+  --foreground-muted: #a1a1aa;
+  --charcoal: #e4e4e7;
+  --gold: #d4b870;
+  --gold-soft: #c9a24d;
+  --amber: #f59e0b;
+  --ivory: #27272a;
+
+  /* Adjusted Glows for Dark Mode */
+  --glow-gold: rgba(201, 162, 77, 0.25);
+  --glow-soft: rgba(201, 162, 77, 0.15);
+  --glow-intense: rgba(201, 162, 77, 0.4);
+  --glow-breathe: rgba(201, 162, 77, 0.2);
+
+  /* Borders & Shadows */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;

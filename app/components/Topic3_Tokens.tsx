@@ -18,21 +18,21 @@ export default function Topic3_Tokens({ onComplete }: TopicCanvasProps) {
     // RENDER
     // ==========================================
     return (
-        <div className="flex-1 h-full flex flex-col bg-[#f8f9fa] relative overflow-hidden font-sans">
+        <div className="flex-1 h-full flex flex-col bg-[var(--background)] relative overflow-hidden font-sans transition-colors duration-500">
 
             {/* TOP NAVIGATION */}
-            <div className="w-full h-20 border-b border-gray-200 flex items-center justify-between px-10 bg-white z-50 shadow-sm">
+            <div className="w-full h-20 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between px-10 bg-white dark:bg-zinc-900 z-50 shadow-sm transition-colors">
                 <div className="flex items-center gap-3">
-                    <div className="bg-black text-white p-2 rounded-lg">
+                    <div className="bg-black dark:bg-white text-white dark:text-black p-2 rounded-lg transition-colors">
                         <Cpu size={20} />
                     </div>
                     <div>
-                        <div className="text-[10px] font-bold uppercase text-gray-400 tracking-widest">Topic 3</div>
-                        <div className="font-bold text-gray-900 text-lg tracking-tight">How AI Reads & Remembers</div>
+                        <div className="text-[10px] font-bold uppercase text-gray-400 dark:text-gray-500 tracking-widest">Topic 3</div>
+                        <div className="font-bold text-[var(--foreground)] text-lg tracking-tight">How AI Reads & Remembers</div>
                     </div>
                 </div>
 
-                <div className="flex bg-gray-100 p-1.5 rounded-xl">
+                <div className="flex bg-gray-100 dark:bg-zinc-800 p-1.5 rounded-xl transition-colors">
                     {[
                         { id: 'TOKENS', label: '1. The Translator' },
                         { id: 'CONTEXT', label: '2. The Moving Table' },
@@ -41,7 +41,7 @@ export default function Topic3_Tokens({ onComplete }: TopicCanvasProps) {
                         <button
                             key={s.id}
                             onClick={() => setStage(s.id as any)}
-                            className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${stage === s.id ? 'bg-white shadow-md text-black transform scale-105' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${stage === s.id ? 'bg-white dark:bg-zinc-700 shadow-md text-[var(--foreground)] dark:text-white transform scale-105' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
                         >
                             {s.label}
                         </button>
@@ -82,25 +82,25 @@ function TokenAnimation({ onNext }: { onNext: () => void }) {
             className="w-full max-w-5xl"
         >
             <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[10px] font-bold uppercase tracking-widest text-blue-600 mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-6 transition-colors">
                     <Scan size={14} /> Concept 3.1: Tokenization
                 </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Machines don't read words.</h2>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                <h2 className="text-4xl md:text-5xl font-extrabold text-[var(--foreground)] mb-4 tracking-tight transition-colors">Machines don't read words.</h2>
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed transition-colors">
                     They break language into <span className="text-blue-600 font-bold">Chunks</span> and convert them into <span className="text-indigo-600 font-bold">Numbers</span>.
                 </p>
             </div>
 
-            <div className="relative h-[400px] bg-white rounded-[40px] shadow-2xl border border-gray-100 flex items-center justify-center overflow-hidden p-8">
+            <div className="relative h-[400px] bg-white dark:bg-zinc-900 rounded-[40px] shadow-2xl border border-gray-100 dark:border-zinc-800 flex items-center justify-center overflow-hidden p-8 transition-colors">
                 {/* Background Grid */}
-                <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                    style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
+                    style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px', color: 'var(--foreground)' }}
                 />
 
                 {/* Progress Bar */}
                 <div className="absolute top-8 left-0 w-full flex justify-center gap-2">
                     {[0, 1, 2, 3].map((s) => (
-                        <div key={s} className={`h-1 w-12 rounded-full transition-colors duration-500 ${step >= s ? 'bg-blue-500' : 'bg-gray-200'}`} />
+                        <div key={s} className={`h-1 w-12 rounded-full transition-colors duration-500 ${step >= s ? 'bg-blue-500' : 'bg-gray-200 dark:bg-zinc-700'}`} />
                     ))}
                 </div>
 
@@ -115,7 +115,7 @@ function TokenAnimation({ onNext }: { onNext: () => void }) {
                                 scale: step === 0 ? 1.1 : 0.9,
                                 filter: step === 0 ? 'blur(0px)' : 'blur(4px)'
                             }}
-                            className="bg-gray-50 border-2 border-gray-100 px-8 py-6 rounded-2xl shadow-sm text-4xl font-serif text-gray-800"
+                            className="bg-gray-50 dark:bg-zinc-800 border-2 border-gray-100 dark:border-zinc-700 px-8 py-6 rounded-2xl shadow-sm text-4xl font-serif text-[var(--foreground)] transition-colors"
                         >
                             "Uber"
                         </motion.div>
@@ -140,13 +140,13 @@ function TokenAnimation({ onNext }: { onNext: () => void }) {
                                     <>
                                         <motion.div
                                             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                                            className="px-5 py-3 rounded-lg bg-blue-100/50 border border-blue-200 text-blue-800 font-bold text-2xl"
+                                            className="px-5 py-3 rounded-lg bg-blue-100/50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200 font-bold text-2xl transition-colors"
                                         >
                                             U
                                         </motion.div>
                                         <motion.div
                                             initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                                            className="px-5 py-3 rounded-lg bg-indigo-100/50 border border-indigo-200 text-indigo-800 font-bold text-2xl"
+                                            className="px-5 py-3 rounded-lg bg-indigo-100/50 dark:bg-indigo-900/50 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-200 font-bold text-2xl transition-colors"
                                         >
                                             ber
                                         </motion.div>
@@ -170,7 +170,7 @@ function TokenAnimation({ onNext }: { onNext: () => void }) {
                     {/* RIGHT: MACHINE OUTPUT */}
                     <div className="relative z-10 w-1/3 flex flex-col items-center">
                         <div className="text-[10px] font-bold uppercase text-gray-400 mb-4 tracking-widest">Neural Input</div>
-                        <div className="bg-[#0a0a0a] w-full max-w-[200px] h-[100px] rounded-2xl flex items-center justify-center border border-gray-800 shadow-2xl relative overflow-hidden group">
+                        <div className="bg-[#0a0a0a] dark:bg-black w-full max-w-[200px] h-[100px] rounded-2xl flex items-center justify-center border border-gray-800 dark:border-zinc-800 shadow-2xl relative overflow-hidden group">
 
                             <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -204,9 +204,9 @@ function TokenAnimation({ onNext }: { onNext: () => void }) {
             </div>
 
             <div className="flex justify-center mt-12">
-                <button onClick={onNext} className="group relative px-10 py-5 bg-black rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
-                    <div className="flex items-center gap-3 text-white" style={{ color: 'white' }}>
-                        Finish Topic <ArrowRight className="group-hover:translate-x-1 transition-transform text-white" />
+                <button onClick={onNext} className="group relative px-10 py-5 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
+                    <div className="flex items-center gap-3 text-[var(--background)]" style={{ color: 'var(--background)' }}>
+                        Finish Topic <ArrowRight className="group-hover:translate-x-1 transition-transform text-[var(--background)]" />
                     </div>
                 </button>
             </div>
@@ -252,8 +252,8 @@ function ContextAnimation({ onNext }: { onNext: () => void }) {
             className="w-full max-w-5xl"
         >
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-extrabold text-gray-900 mb-4">The "Moving Table" Memory</h2>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+                <h2 className="text-4xl font-extrabold text-[var(--foreground)] mb-4 transition-colors">The "Moving Table" Memory</h2>
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
                     The AI has a small table. When it's full, adding a new block <span className="text-red-500 font-bold">pushes the oldest one off the edge</span>.
                 </p>
             </div>
@@ -261,7 +261,7 @@ function ContextAnimation({ onNext }: { onNext: () => void }) {
             <div className="h-[400px] w-full relative flex items-center justify-center">
 
                 {/* The "Table" */}
-                <div className="w-[600px] h-4 bg-gray-300 rounded-full relative mx-auto my-auto z-10 flex items-center justify-center">
+                <div className="w-[600px] h-4 bg-gray-300 dark:bg-zinc-700 rounded-full relative mx-auto my-auto z-10 flex items-center justify-center transition-colors">
                     <div className="absolute top-6 text-xs font-bold uppercase text-gray-400 tracking-widest text-center w-full">Context Window (Limit: 3)</div>
                 </div>
 
@@ -276,7 +276,7 @@ function ContextAnimation({ onNext }: { onNext: () => void }) {
                                     initial={{ opacity: 0, y: -50, scale: 0.5 }}
                                     animate={{ opacity: 1, y: -30, scale: 1 }}
                                     exit={{ opacity: 0, y: 100, rotate: 20, scale: 0.8, transition: { duration: 0.5 } }}
-                                    className="w-32 h-32 rounded-2xl bg-white shadow-xl border-4 border-gray-100 flex items-center justify-center text-xl font-bold text-gray-800"
+                                    className="w-32 h-32 rounded-2xl bg-white dark:bg-zinc-800 shadow-xl border-4 border-gray-100 dark:border-zinc-700 flex items-center justify-center text-xl font-bold text-[var(--foreground)] transition-colors"
                                 >
                                     {item}
                                 </motion.div>
@@ -294,15 +294,15 @@ function ContextAnimation({ onNext }: { onNext: () => void }) {
             </div>
 
             {/* Explanation Box */}
-            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center max-w-xl mx-auto mt-8">
-                <p className="text-blue-900 font-medium">
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 text-center max-w-xl mx-auto mt-8 transition-colors">
+                <p className="text-blue-900 dark:text-blue-200 font-medium transition-colors">
                     Did you see that? By the time "Sahil" arrived on the table, the word "Hello" fell off.
                     The AI literally <span className="underline">cannot see</span> "Hello" anymore.
                 </p>
             </div>
 
             <div className="flex justify-center mt-12">
-                <button onClick={onNext} className="group flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl">
+                <button onClick={onNext} className="group flex items-center gap-3 px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl">
                     See The Solution <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </button>
             </div>
@@ -319,15 +319,15 @@ function OptimizationAnimation({ onComplete }: { onComplete: () => void }) {
             className="w-full max-w-4xl flex flex-col items-center"
         >
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Pack Your Suitcase Carefully</h2>
-                <p className="text-xl text-gray-500 max-w-xl mx-auto">
+                <h2 className="text-4xl font-extrabold text-[var(--foreground)] mb-4 transition-colors">Pack Your Suitcase Carefully</h2>
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-xl mx-auto transition-colors">
                     Since space is limited, we must remove the "Air" (Filler words) to fit more "Clothes" (Meaning).
                 </p>
             </div>
 
             <div className="grid grid-cols-2 gap-12 w-full">
                 {/* BAD PACKING */}
-                <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm opacity-50 relative overflow-hidden">
+                <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-gray-200 dark:border-zinc-800 shadow-sm opacity-50 relative overflow-hidden transition-colors">
                     <div className="absolute top-0 left-0 bg-red-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-br-lg">
                         Wasteful
                     </div>
@@ -346,12 +346,12 @@ function OptimizationAnimation({ onComplete }: { onComplete: () => void }) {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="bg-green-50 p-8 rounded-3xl border-2 border-green-500 shadow-xl relative overflow-hidden"
+                    className="bg-green-50 dark:bg-green-900/10 p-8 rounded-3xl border-2 border-green-500 dark:border-green-600 shadow-xl relative overflow-hidden transition-colors"
                 >
                     <div className="absolute top-0 left-0 bg-green-600 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-br-lg">
                         Optimized
                     </div>
-                    <div className="mt-8 text-2xl font-bold text-gray-900 leading-relaxed">
+                    <div className="mt-8 text-2xl font-bold text-[var(--foreground)] leading-relaxed transition-colors">
                         "Weather report?"
                     </div>
                     <div className="mt-10 flex gap-1 w-[20%]">
@@ -359,7 +359,7 @@ function OptimizationAnimation({ onComplete }: { onComplete: () => void }) {
                             <div key={i} className="h-3 w-full bg-green-500 rounded-full" />
                         ))}
                     </div>
-                    <div className="mt-4 text-green-700 font-bold text-sm flex items-center gap-2">
+                    <div className="mt-4 text-green-700 dark:text-green-400 font-bold text-sm flex items-center gap-2 transition-colors">
                         <CheckCircle2 size={16} /> 80% Space Saved
                     </div>
                 </motion.div>

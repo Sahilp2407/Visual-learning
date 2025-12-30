@@ -97,12 +97,12 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
 
     return (
         <div
-            className="flex-1 h-full relative overflow-y-auto flex flex-col items-center justify-start p-6 md:p-12 bg-gradient-to-br from-[#fafafa] via-white to-[#f5f5f5] perspective-1000"
+            className="flex-1 h-full relative overflow-y-auto flex flex-col items-center justify-start p-6 md:p-12 bg-[var(--background)] perspective-1000 transition-colors duration-500"
             onMouseMove={handleMouseMove}
         >
             {/* Background Grid & Ambience */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
+                style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px', color: 'var(--foreground)' }}
             />
             <motion.div
                 animate={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.1, 1] }}
@@ -111,7 +111,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
             />
 
             {/* HEADER - STAGE INDICATOR */}
-            <div className="relative z-50 mb-12 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full border border-gray-200 shadow-sm flex items-center gap-6">
+            <div className="relative z-50 mb-12 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md px-6 py-3 rounded-full border border-gray-200 dark:border-zinc-700 shadow-sm flex items-center gap-6 transition-colors">
                 {[
                     { id: 'READ', icon: BookOpen, label: 'Data DNA' },
                     { id: 'VISUAL', icon: Eye, label: 'Pattern Scan' },
@@ -120,7 +120,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                     <button
                         key={s.id}
                         onClick={() => setStage(s.id as any)}
-                        className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors ${stage === s.id ? 'text-[var(--gold)]' : 'text-gray-400 hover:text-gray-600'}`}
+                        className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors ${stage === s.id ? 'text-[var(--gold)]' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
                     >
                         <s.icon size={14} /> {s.label}
                     </button>
@@ -155,7 +155,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                             <p className="text-xl text-gray-500 leading-relaxed">
                                 <span className="font-bold text-gray-800">Here is the truth:</span> An LLM doesn't have a personality, opinions, or knowledge. It simply reflects the data it was fed. If you feed it math, it speaks math. If you feed it Reddit, it speaks internet slang.
                             </p>
-                            <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-100 inline-block">
+                            <div className="mt-8 p-4 bg-gray-50 dark:bg-zinc-800 rounded-xl border border-gray-100 dark:border-zinc-700 inline-block">
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">👇 Your Goal</p>
                                 <p className="text-[var(--foreground)] font-medium">Observe how massive datasets flow into the "brain" to create its knowledge base.</p>
                             </div>
@@ -235,9 +235,9 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                         >
                             <div className="absolute inset-0 rounded-full border border-white/10" />
                             <div className="flex items-center gap-4 relative z-10">
-                                <span className="text-white font-bold uppercase tracking-widest text-sm pl-2">Next: See The Patterns</span>
-                                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                    <ArrowRight size={14} className="text-white" />
+                                <span className="text-white dark:text-black font-bold uppercase tracking-widest text-sm pl-2">Next: See The Patterns</span>
+                                <div className="w-8 h-8 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center group-hover:bg-white/30 dark:group-hover:bg-black/20 transition-colors">
+                                    <ArrowRight size={14} className="text-white dark:text-black" />
                                 </div>
                             </div>
                         </motion.button>
@@ -265,7 +265,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                             <p className="text-gray-500 mb-8 leading-relaxed">
                                 The model doesn't "know" English or Java. It strictly follows <span className="font-bold text-gray-800">statistical probabilities</span>. It predicts the ending of a pattern based on billions of examples it has seen before.
                             </p>
-                            <div className="p-4 bg-purple-50/50 rounded-xl border border-purple-100 inline-block animate-bounce-subtle">
+                            <div className="p-4 bg-purple-50/50 dark:bg-purple-900/10 rounded-xl border border-purple-100 dark:border-purple-800 inline-block animate-bounce-subtle">
                                 <p className="text-sm font-bold text-purple-400 uppercase tracking-widest mb-1">👇 Try It Yourself</p>
                                 <p className="text-[var(--foreground)] text-sm">Click a data type to see how the model "auto-completes" the pattern.</p>
                             </div>
@@ -286,11 +286,11 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                                         onClick={() => startScan(item.id as any)}
                                         className={`p-6 rounded-2xl border text-left flex items-center gap-4 transition-all group
                                             ${patternType === item.id
-                                                ? 'bg-white border-[var(--gold)] shadow-lg scale-105 ring-2 ring-[var(--gold)]/20'
-                                                : 'bg-white border-gray-100 hover:border-gray-200 hover:bg-gray-50'
-                                            }`}
+                                                ? 'bg-white dark:bg-zinc-800 border-[var(--gold)] shadow-lg scale-105 ring-2 ring-[var(--gold)]/20'
+                                                : 'bg-white dark:bg-zinc-800/50 border-gray-100 dark:border-zinc-700 hover:border-gray-200 dark:hover:border-zinc-600 hover:bg-gray-50 dark:hover:bg-zinc-700'
+                                            } transition-colors`}
                                     >
-                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.bg} ${item.color}`}>
+                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.bg === 'bg-blue-50' ? 'bg-blue-50 dark:bg-blue-900/30' : item.bg === 'bg-purple-50' ? 'bg-purple-50 dark:bg-purple-900/30' : 'bg-orange-50 dark:bg-orange-900/30'} ${item.color}`}>
                                             <item.icon size={24} />
                                         </div>
                                         <div>
@@ -399,9 +399,9 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                             >
                                 <div className="absolute inset-0 rounded-full border border-white/10" />
                                 <div className="flex items-center gap-4 relative z-10">
-                                    <span className="text-white font-bold uppercase tracking-widest text-sm pl-2">Next: Control The Mix</span>
-                                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                        <ArrowRight size={14} className="text-white" />
+                                    <span className="text-white dark:text-black font-bold uppercase tracking-widest text-sm pl-2">Next: Control The Mix</span>
+                                    <div className="w-8 h-8 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center group-hover:bg-white/30 dark:group-hover:bg-black/20 transition-colors">
+                                        <ArrowRight size={14} className="text-white dark:text-black" />
                                     </div>
                                 </div>
                             </motion.button>
@@ -429,7 +429,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                             <p className="text-gray-500 mb-6">
                                 If you feed an AI mostly Shakespeare, it speaks like a poet. If you feed it Reddit, it speaks like a teenager. <br /> <strong className="text-gray-800">You are what you eat.</strong>
                             </p>
-                            <div className="p-4 bg-orange-50/50 rounded-xl border border-orange-100 inline-block">
+                            <div className="p-4 bg-orange-50/50 dark:bg-orange-900/10 rounded-xl border border-orange-100 dark:border-orange-800 inline-block">
                                 <p className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-1">👇 Your Mission</p>
                                 <p className="text-[var(--foreground)] text-sm">Mix the datasets to unlock the hidden <span className="font-bold">"Gen-Z Poet"</span> personality.</p>
                             </div>
@@ -438,9 +438,9 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-[600px]">
 
                             {/* CONTROLS (Left 4 cols) */}
-                            <div className="col-span-12 lg:col-span-5 bg-white rounded-[32px] border border-gray-200 shadow-xl p-8 flex flex-col justify-between">
+                            <div className="col-span-12 lg:col-span-5 bg-white dark:bg-zinc-900 rounded-[32px] border border-gray-200 dark:border-zinc-700 shadow-xl p-8 flex flex-col justify-between transition-colors">
                                 <div className="space-y-8">
-                                    <div className="flex items-center gap-3 text-[var(--foreground)] font-bold uppercase tracking-widest text-sm border-b border-gray-100 pb-4">
+                                    <div className="flex items-center gap-3 text-[var(--foreground)] font-bold uppercase tracking-widest text-sm border-b border-gray-100 dark:border-zinc-800 pb-4">
                                         <Database size={18} /> Training Data Mixer
                                     </div>
 
@@ -453,7 +453,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                                         <input
                                             type="range" min="0" max="100" value={sliders.shakespeare}
                                             onChange={(e) => setSliders({ ...sliders, shakespeare: parseInt(e.target.value) })}
-                                            className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                                            className="w-full h-2 bg-gray-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-purple-600"
                                         />
                                         <div className="text-[10px] text-gray-400 font-mono pl-1">
                                             Adds: "Thou", "Verily", "Doth", "Hark"
@@ -469,7 +469,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                                         <input
                                             type="range" min="0" max="100" value={sliders.tech}
                                             onChange={(e) => setSliders({ ...sliders, tech: parseInt(e.target.value) })}
-                                            className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                                            className="w-full h-2 bg-gray-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
                                         />
                                         <div className="text-[10px] text-gray-400 font-mono pl-1">
                                             Adds: "Function", "Runtime", "Error", "Null"
@@ -485,7 +485,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                                         <input
                                             type="range" min="0" max="100" value={sliders.slang}
                                             onChange={(e) => setSliders({ ...sliders, slang: parseInt(e.target.value) })}
-                                            className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                                            className="w-full h-2 bg-gray-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-600"
                                         />
                                         <div className="text-[10px] text-gray-400 font-mono pl-1">
                                             Adds: "No cap", "Bruh", "Cooked", "Bet"
@@ -545,7 +545,7 @@ export default function Topic2_TrainingData({ onComplete }: TopicCanvasProps) {
                                 <div className="mt-auto border-t border-gray-800 pt-6 flex justify-end items-center z-10">
                                     <button
                                         onClick={onComplete}
-                                        className="group relative px-6 py-3 bg-white hover:bg-gray-100 rounded-full shadow-lg transition-all"
+                                        className="group relative px-6 py-3 bg-white dark:bg-zinc-100 hover:bg-gray-50 dark:hover:bg-zinc-200 rounded-full shadow-lg transition-all"
                                     >
                                         <div className="flex items-center gap-3 relative z-10">
                                             <span className="text-black font-bold uppercase tracking-widest text-xs pl-1">Complete Topic</span>

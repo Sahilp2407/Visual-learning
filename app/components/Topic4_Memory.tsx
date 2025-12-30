@@ -18,11 +18,11 @@ export default function Topic4_Memory({ onComplete }: TopicCanvasProps) {
     const [stage, setStage] = useState<'LIMIT' | 'MISTAKE' | 'SOLUTION'>('LIMIT')
 
     return (
-        <div className="w-full h-full flex flex-col relative bg-[#fafaf8]">
+        <div className="w-full h-full flex flex-col relative bg-[var(--background)] transition-colors duration-500">
             {/* PROGRESS HEADER */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 z-50">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 dark:bg-zinc-800 z-50">
                 <motion.div
-                    className="h-full bg-black"
+                    className="h-full bg-black dark:bg-white"
                     animate={{ width: stage === 'LIMIT' ? '33%' : stage === 'MISTAKE' ? '66%' : '100%' }}
                 />
             </div>
@@ -81,22 +81,22 @@ function LimitAnimation({ onNext }: { onNext: () => void }) {
             className="w-full max-w-5xl flex flex-col items-center"
         >
             <div className="text-center mb-12 space-y-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs uppercase tracking-widest">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-bold text-xs uppercase tracking-widest transition-colors">
                     <Brain size={16} /> Concept 4.1: The Context Window
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight">
+                <h2 className="text-4xl md:text-6xl font-black text-[var(--foreground)] tracking-tight transition-colors">
                     The Memory Limit.
                 </h2>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                    AI memory isn't infinite. It's a <span className="font-bold text-indigo-600">moving window</span>.
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
+                    AI memory isn't infinite. It's a <span className="font-bold text-indigo-600 dark:text-indigo-400">moving window</span>.
                 </p>
             </div>
 
             {/* CHAT INTERFACE VISUAL */}
-            <div className="relative w-full max-w-md bg-white rounded-[40px] shadow-2xl border-[8px] border-gray-100 overflow-hidden flex flex-col h-[500px]">
+            <div className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-[40px] shadow-2xl border-[8px] border-gray-100 dark:border-zinc-800 overflow-hidden flex flex-col h-[500px] transition-colors">
 
                 {/* HEADER */}
-                <div className="h-16 border-b border-gray-100 flex items-center justify-between px-6 bg-white/80 backdrop-blur-md z-20 absolute top-0 w-full">
+                <div className="h-16 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between px-6 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md z-20 absolute top-0 w-full transition-colors">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-red-400" />
                         <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -109,8 +109,8 @@ function LimitAnimation({ onNext }: { onNext: () => void }) {
                 <div className="flex-1 pt-24 pb-8 px-6 flex flex-col justify-end gap-4 relative">
 
                     {/* BACKGROUND GRIDS */}
-                    <div className="absolute inset-0 opacity-[0.03]"
-                        style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+                    <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+                        style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '20px 20px', color: 'var(--foreground)' }}
                     />
 
                     {/* FORGOTTEN ZONE VISUAL */}
@@ -125,7 +125,7 @@ function LimitAnimation({ onNext }: { onNext: () => void }) {
                                 initial={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                                 animate={{ opacity: 0.4, y: -100, filter: 'blur(4px)', scale: 0.9 }}
                                 exit={{ opacity: 0 }}
-                                className={`w-full p-4 rounded-2xl mb-2 flex items-center gap-3 grayscale border-2 border-red-100 bg-red-50/50
+                                className={`w-full p-4 rounded-2xl mb-2 flex items-center gap-3 grayscale border-2 border-red-100 dark:border-red-900/30 bg-red-50/50 dark:bg-red-900/10
                                      ${forgottenItem.role === 'ai' ? 'flex-row' : 'flex-row-reverse'}
                                 `}
                             >
@@ -152,8 +152,8 @@ function LimitAnimation({ onNext }: { onNext: () => void }) {
                                         max-w-[80%] p-4 rounded-2xl text-sm font-bold shadow-sm relative group
                                         ${msg.role === 'user'
                                             ? 'bg-blue-600 text-white rounded-br-none'
-                                            : 'bg-white border border-gray-100 text-gray-800 rounded-bl-none'}
-                                        ${isNewest ? 'ring-2 ring-blue-200 ring-offset-2' : ''}
+                                            : 'bg-white dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 text-gray-800 dark:text-gray-200 rounded-bl-none'}
+                                        ${isNewest ? 'ring-2 ring-blue-200 dark:ring-blue-800 ring-offset-2 dark:ring-offset-zinc-900' : ''}
                                     `}>
                                         {msg.text}
                                         {isNewest && (
@@ -175,9 +175,9 @@ function LimitAnimation({ onNext }: { onNext: () => void }) {
             </div>
 
             <div className="mt-12 text-center">
-                <button onClick={onNext} className="group relative px-8 py-4 bg-black rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
-                    <span className="flex items-center gap-2 text-white" style={{ color: 'white' }}>
-                        See why long prompts fail <ArrowRight size={16} className="text-white" />
+                <button onClick={onNext} className="group relative px-8 py-4 bg-[var(--foreground)] rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
+                    <span className="flex items-center gap-2 text-[var(--background)]" style={{ color: 'var(--background)' }}>
+                        See why long prompts fail <ArrowRight size={16} className="text-[var(--background)]" />
                     </span>
                 </button>
             </div>
@@ -249,20 +249,20 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
             className="w-full max-w-6xl flex flex-col items-center"
         >
             <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100 text-red-600 font-bold text-xs uppercase tracking-widest mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-widest mb-4 transition-colors">
                     <AlertCircle size={16} /> Why AI makes Mistakes
                 </div>
-                <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
+                <h2 className="text-3xl md:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4 transition-colors">
                     The "Middle" gets lost.
                 </h2>
-                <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
                     Humans and AI both suffer from the <b>"Primacy & Recency Effect"</b>. <br />
-                    We remember the start and end, but <span className="text-red-500 font-bold bg-red-50 px-1">ignore the boring middle</span>.
+                    We remember the start and end, but <span className="text-red-500 font-bold bg-red-50 dark:bg-red-900/30 px-1">ignore the boring middle</span>.
                 </p>
             </div>
 
             {/* LIVE COMMENTARY BAR */}
-            <div className="w-full max-w-5xl mb-6 bg-gray-900 text-white rounded-xl p-4 flex items-center justify-center gap-3 font-mono text-sm shadow-xl">
+            <div className="w-full max-w-5xl mb-6 bg-gray-900 dark:bg-black text-white rounded-xl p-4 flex items-center justify-center gap-3 font-mono text-sm shadow-xl transition-colors">
                 <div className={`w-3 h-3 rounded-full ${attention > 80 ? 'bg-green-400 animate-pulse' : 'bg-red-500 animate-ping'}`} />
                 {commentary}
             </div>
@@ -270,41 +270,41 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
 
                 {/* LEFT: THE SCROLLING PROMPT */}
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden h-[400px] flex flex-col">
-                    <div className="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center z-10">
-                        <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Your Long Prompt</span>
+                <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-xl border border-gray-100 dark:border-zinc-800 relative overflow-hidden h-[400px] flex flex-col transition-colors">
+                    <div className="p-4 border-b border-gray-100 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-800/50 flex justify-between items-center z-10 transition-colors">
+                        <span className="text-xs font-bold uppercase tracking-widest text-gray-400 transition-colors">Your Long Prompt</span>
                     </div>
 
-                    <div className="relative flex-1 bg-white p-8 overflow-hidden">
+                    <div className="relative flex-1 bg-white dark:bg-zinc-900 p-8 overflow-hidden transition-colors">
                         {/* The Content Moving Up */}
                         <motion.div
                             className="absolute top-0 left-0 w-full px-8 pb-8"
                             style={{ top: '50%', translateY: `${-progress * 4}%` }}
                         >
                             {/* INTRO */}
-                            <div className="mb-32 p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500">
-                                <h4 className="font-bold text-blue-900 mb-2">The Start</h4>
-                                <p className="text-xs text-blue-700">"Here is the context for the financial report..."</p>
+                            <div className="mb-32 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border-l-4 border-blue-500 transition-colors">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2 transition-colors">The Start</h4>
+                                <p className="text-xs text-blue-700 dark:text-blue-400 transition-colors">"Here is the context for the financial report..."</p>
                             </div>
 
                             {/* MIDDLE */}
-                            <div className="mb-32 p-6 bg-yellow-50 rounded-2xl border-l-4 border-yellow-500 transition-all duration-300"
+                            <div className="mb-32 p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 transition-all duration-300"
                                 style={{
                                     opacity: attention < 50 ? 0.2 : 1,
                                     transform: attention < 50 ? 'scale(0.95)' : 'scale(1)',
                                     filter: attention < 50 ? 'blur(2px) grayscale(100%)' : 'none'
                                 }}
                             >
-                                <h4 className="font-bold text-yellow-900 mb-2">The Middle</h4>
-                                <div className="p-2 bg-yellow-200/50 rounded text-sm font-mono font-bold text-yellow-800 border border-yellow-300">
+                                <h4 className="font-bold text-yellow-900 dark:text-yellow-400 mb-2 transition-colors">The Middle</h4>
+                                <div className="p-2 bg-yellow-200/50 dark:bg-yellow-900/50 rounded text-sm font-mono font-bold text-yellow-800 dark:text-yellow-200 border border-yellow-300 dark:border-yellow-700 transition-colors">
                                     CRITICAL: OUTPUT MUST BE JSON
                                 </div>
                             </div>
 
                             {/* END */}
-                            <div className="mb-32 p-6 bg-green-50 rounded-2xl border-l-4 border-green-500">
-                                <h4 className="font-bold text-green-900 mb-2">The End</h4>
-                                <p className="text-xs text-green-700">"Now please verify and summarize the revenue."</p>
+                            <div className="mb-32 p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl border-l-4 border-green-500 transition-colors">
+                                <h4 className="font-bold text-green-900 dark:text-green-300 mb-2 transition-colors">The End</h4>
+                                <p className="text-xs text-green-700 dark:text-green-400 transition-colors">"Now please verify and summarize the revenue."</p>
                             </div>
                         </motion.div>
 
@@ -321,7 +321,7 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
                 <div className="flex flex-col gap-6">
 
                     {/* ATTENTION GRAPH */}
-                    <div className="bg-gray-50 rounded-3xl p-6 shadow-inner border border-gray-200 flex-1 flex flex-col relative overflow-hidden">
+                    <div className="bg-gray-50 dark:bg-zinc-800/50 rounded-3xl p-6 shadow-inner border border-gray-200 dark:border-zinc-700 flex-1 flex flex-col relative overflow-hidden transition-colors">
                         <div className="flex justify-between items-center mb-6 z-10">
                             <span className="text-gray-400 font-bold text-xs uppercase tracking-widest">Internal Attention Level</span>
                             <span className={`text-3xl font-black ${attention > 80 ? 'text-green-500' : 'text-red-500'}`}>
@@ -331,7 +331,7 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
 
                         {/* Graph Interface */}
                         <div className="flex-1 flex items-end gap-1 relative z-10">
-                            <div className="w-full bg-gray-200 h-full absolute inset-0 rounded-xl opacity-20" />
+                            <div className="w-full bg-gray-200 dark:bg-zinc-700 h-full absolute inset-0 rounded-xl opacity-20 transition-colors" />
                             <motion.div
                                 className={`w-full rounded-t-xl transition-colors duration-300 ${attention > 60 ? 'bg-green-400' : 'bg-red-500'}`}
                                 animate={{ height: `${attention}%` }}
@@ -344,19 +344,19 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
                     </div>
 
                     {/* CAPTURED CONCEPTS LIST */}
-                    <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 flex-1">
+                    <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-zinc-800 flex-1 transition-colors">
                         <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">What the AI Remembered:</h3>
                         <div className="space-y-3">
                             {captured.map((cap) => (
                                 <div
                                     key={cap.id}
                                     className={`p-3 rounded-xl flex items-center justify-between border-l-4 transition-all duration-500
-                                        ${cap.status === 'pending' ? 'opacity-30 border-gray-200 bg-white' : ''}
-                                        ${cap.status === 'success' ? 'opacity-100 border-green-500 bg-green-50' : ''}
-                                        ${cap.status === 'missed' ? 'opacity-100 border-red-500 bg-red-50' : ''}
+                                        ${cap.status === 'pending' ? 'opacity-30 border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800' : ''}
+                                        ${cap.status === 'success' ? 'opacity-100 border-green-500 bg-green-50 dark:bg-green-900/20' : ''}
+                                        ${cap.status === 'missed' ? 'opacity-100 border-red-500 bg-red-50 dark:bg-red-900/20' : ''}
                                     `}
                                 >
-                                    <span className="text-sm font-bold text-gray-700">{cap.label}</span>
+                                    <span className="text-sm font-bold text-gray-700 dark:text-gray-300 transition-colors">{cap.label}</span>
 
                                     {cap.status === 'success' && <CheckCircle2 size={18} className="text-green-500" />}
                                     {cap.status === 'missed' && <span className="text-[10px] font-bold bg-red-500 text-white px-2 py-1 rounded">IGNORED</span>}
@@ -371,9 +371,9 @@ function MistakeAnimation({ onNext }: { onNext: () => void }) {
             </div>
 
             <div className="mt-12 text-center">
-                <button onClick={onNext} className="group relative px-8 py-4 bg-black rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
-                    <span className="flex items-center gap-2 text-white" style={{ color: 'white' }}>
-                        How to fix this <ArrowRight size={16} className="text-white bg-transparent" />
+                <button onClick={onNext} className="group relative px-8 py-4 bg-[var(--foreground)] rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
+                    <span className="flex items-center gap-2 text-[var(--background)]" style={{ color: 'var(--background)' }}>
+                        How to fix this <ArrowRight size={16} className="text-[var(--background)] bg-transparent" />
                     </span>
                 </button>
             </div>
@@ -392,41 +392,41 @@ function SolutionAnimation({ onComplete }: { onComplete: () => void }) {
             className="w-full max-w-5xl flex flex-col items-center"
         >
             <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border border-green-100 text-green-700 font-bold text-xs uppercase tracking-widest mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 text-green-700 dark:text-green-300 font-bold text-xs uppercase tracking-widest mb-4 transition-colors">
                     <CheckCircle2 size={16} /> Best Practice
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
+                <h2 className="text-4xl md:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4 transition-colors">
                     Recency & Repetition.
                 </h2>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                    To fix memory leaks, <span className="font-bold text-black border-b-2 border-green-400">Restate Goals</span> at the end of your prompt, or break tasks into smaller chunks.
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
+                    To fix memory leaks, <span className="font-bold text-[var(--foreground)] border-b-2 border-green-400">Restate Goals</span> at the end of your prompt, or break tasks into smaller chunks.
                 </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
                 {[
-                    { title: "One Task", desc: "Don't ask for 5 things at once.", icon: FileText, color: "bg-blue-50 text-blue-600" },
-                    { title: "Use Summaries", desc: "Ask AI to summarize before moving on.", icon: History, color: "bg-purple-50 text-purple-600" },
-                    { title: "Repeat Goals", desc: "Remind the AI of the format at the end.", icon: MessageSquare, color: "bg-green-50 text-green-600" },
+                    { title: "One Task", desc: "Don't ask for 5 things at once.", icon: FileText, color: "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" },
+                    { title: "Use Summaries", desc: "Ask AI to summarize before moving on.", icon: History, color: "bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400" },
+                    { title: "Repeat Goals", desc: "Remind the AI of the format at the end.", icon: MessageSquare, color: "bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400" },
                 ].map((card, i) => (
                     <motion.div
                         key={i}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: i * 0.2 }}
-                        className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-300"
+                        className="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-zinc-800 flex flex-col items-center text-center group hover:-translate-y-2 transition-all duration-300"
                     >
                         <div className={`w-16 h-16 rounded-2xl ${card.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                             <card.icon size={32} />
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{card.title}</h3>
-                        <p className="text-gray-500">{card.desc}</p>
+                        <h3 className="text-xl font-bold text-[var(--foreground)] mb-2 transition-colors">{card.title}</h3>
+                        <p className="text-gray-500 dark:text-gray-400 transition-colors">{card.desc}</p>
                     </motion.div>
                 ))}
             </div>
 
             <div className="mt-16">
-                <button onClick={onComplete} className="group relative px-10 py-5 bg-black text-white rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl">
+                <button onClick={onComplete} className="group relative px-10 py-5 bg-[var(--foreground)] text-[var(--background)] rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl">
                     <div className="flex items-center gap-3">
                         Complete Topic <CheckCircle2 className="text-green-400" />
                     </div>
