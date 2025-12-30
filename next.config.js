@@ -5,9 +5,8 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true,
   },
-  // Only use basePath for GitHub Pages (which runs in GitHub Actions)
-  // Vercel and local dev should be at root
-  basePath: process.env.GITHUB_ACTIONS ? '/Visual-learning' : '',
+  // Use the environment variable if set (for GitHub Pages), otherwise default to root (for Vercel)
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 }
 
 module.exports = nextConfig
